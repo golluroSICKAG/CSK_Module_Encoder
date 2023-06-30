@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest>
+    <application name="CSK_Module_Encoder">
+        <crown name="CSK_Module_Encoder">
+            <desc>This is an automatically generated CROWN (description not necessary).</desc>
+            <serves/>
+        </crown>
+        <crown name="CSK_Encoder">
+            <trait>released</trait>
+            <desc>Module to configure encoder / conveyor setup (realized in dynamical created cFlow) and to provide / forward encoder / conveyor data. +
+**INFO** : Compatible with CSK_DigitalIOManager module version &gt;= 3.7.0 (if using DigitalIn port as encoder interface). +
+Typically the features of this module are used like this (check also main script of this module): +
+{empty} +
+**1) Setup** +
+Select encoder interface where the encoder is connected to the device (setEncoderInterface). +
+Select encoder source to be used (setEncoderSource). +
+Select decoder instance to be used (setDecoderInstance). +
+Optionally configure decoder setup (setDecoder...). +
+Optionally activate conveyor feature and setup (setConveyor...). +
+Activate encoder feature (setEncoderFeatureActive). +
+{empty} +
+**2) Pulling encoder / conveyor data periodically** +
+It is possible to configure a timer to periodically pull encoder / conveyor data. +
+Set the cycle time via setTimerCycle and activate it via setTimerActive. +
+If activated it will pull now the encoder / conveyor data and provide it via the OnNewEncoderInfo / OnNewConveyorInfo events. +
+{empty} +
+** 3) Use ConveyorTimeout** +
+It is possible to configure a ConveyorTimeout to receive an event if the conveyor moved for a defined amount of ticks or a distance. +
+To use it you need to configure the mode (setConveyorTimeoutMode) and value (setConveyorTimeoutValue) and activate it via setConveyorTimeoutActive. +
+It will then trigger the OnConveyorTimeout event if the timeout was reached and will restart the ConveyorTimeout. +
+{empty} +
+**4) Access from other applications** +
+You can make use of the mentioned features / events from other apps or you can directy get the handles of the decoder or conveyor via 'getEncoderHandle' / 'getConveyorTimeoutHandle' to use their functions directly wihtin your app. +</desc>
+            <enum name="DecoderCountMode" trait="released">
+                <desc>Decoder count mode.</desc>
+                <item desc="Counts up in Encoder forward / backward direction." name="BIDIRECTIONAL">BIDIRECTIONAL</item>
+                <item desc="Counts up in Encoder forward direction / counts down in Encoder backward direction" name="POSITIVE_MOVEMENT">POSITIVE_MOVEMENT</item>
+                <item desc="Counts down in Encoder forward direction / counts up in Encoder backward direction." name="NEGATIVE_MOVEMENT">NEGATIVE_MOVEMENT</item>
+                <item desc="Counts up in Encoder forward direction / no count in Encoder backward direction." name="FORWARD_MOVEMENT">FORWARD_MOVEMENT</item>
+                <item desc="No count in Encoder forward direction / counts up in Encoder backward direction." name="BACKWARD_MOVEMENT">BACKWARD_MOVEMENT</item>
+            </enum>
+            <enum name="DecoderPhases" trait="released">
+                <desc>Phases of decoder.</desc>
+                <item desc="Using A_in." name="SINGLE_PHASE">SINGLE_PHASE</item>
+                <item desc="Using A_in and B_in." name="DUAL_PHASE">DUAL_PHASE</item>
+            </enum>
+            <enum name="ConveyorTimeoutMode" trait="released">
+                <desc>Mode for conveyor timeout.</desc>
+                <item desc="Use the increment ticks for conveyor timeout." name="TICKS">TICKS</item>
+                <item desc="Use the calculated distance for conveyor timeout." name="DISTANCE">DISTANCE</item>
+            </enum>
+            <serves>
+                <event name="OnNewStatusLoadParameterOnReboot">
+                    <desc>Notify status if parameters should be loaded on app/device boot up.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnPersistentDataModuleAvailable">
+                    <desc>Notify status if features of CSK_PersistentData module are available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnDataLoadedOnReboot">
+                    <desc>Event to call if module tried to load parameters and should be ready.</desc>
+                </event>
+                <event name="OnNewParameterName">
+                    <desc>Notify name of persistent data parameter.</desc>
+                    <param desc="Parameter name." multiplicity="1" name="name" type="string"/>
+                </event>
+                <event name="OnUserLevelOperatorActive">
+                    <desc>Status of Operator userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelMaintenanceActive">
+                    <desc>Status of Maintenance userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelServiceActive">
+                    <desc>Status of Service userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelAdminActive">
+                    <desc>Status of Admin userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewIncrementInfo">
+                    <desc>Notify current increment info data.</desc>
+                    <param desc="Current increment info data." multiplicity="1" name="incrementInfo" type="string"/>
+                </event>
+                <event name="OnNewStatusEncoderSource">
+                    <desc>Notify selected source for encoder.</desc>
+                    <param desc="Source" multiplicity="1" name="source" type="string"/>
+                </event>
+                <event name="OnNewStatusDecoderInstance">
+                    <desc>Notify instance of decoder.</desc>
+                    <param desc="Instance of decoder." multiplicity="1" name="instance" type="string"/>
+                </event>
+                <event name="OnNewStatusDecoderHighResolution">
+                    <desc>Notify status of decoder high resolution.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusDecoderCountMode">
+                    <desc>Notify the current status of the decoder count mode.</desc>
+                    <param desc="Mode (see Encoder.Decoder.DecoderCountMode)." multiplicity="1" name="mode" type="string"/>
+                </event>
+                <event name="OnNewStatusDecoderPrescaler">
+                    <desc>Notify decoder prescaler.</desc>
+                    <param desc="Prescaler" multiplicity="1" name="prescaler" type="int"/>
+                </event>
+                <event name="OnNewStatusDecoderNumberOfPhases">
+                    <desc>Notify decoder number of phases.</desc>
+                    <param desc="Phases of decoder (see DecoderPhases)." multiplicity="1" name="decoderPhases" type="string"/>
+                </event>
+                <event name="OnNewDecoderInstanceList">
+                    <desc>Notify available decoder instances.</desc>
+                    <param desc="List of available decoder instances." multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnNewEncoderIncrementSourceList">
+                    <desc>Notify list of available encoder increment sources.</desc>
+                    <param desc="List" multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnNewStatusTimerActive">
+                    <desc>Notify if timer is active to periodically pull increment.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusTimerCycle">
+                    <desc>Notify cycle time of increment timer.</desc>
+                    <param desc="Time of cycle." multiplicity="1" name="cycleTime" type="int"/>
+                </event>
+                <event name="OnNewEncoderInterfaceList">
+                    <desc>Notify list of available interfaces to connect the encoder.</desc>
+                    <param desc="List" multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnNewStatusEncoderInterface">
+                    <desc>Notify selected interface to connect the encoder.</desc>
+                    <param desc="Interface" multiplicity="1" name="interface" type="string"/>
+                </event>
+                <event name="OnNewStatusConveyorActive">
+                    <desc>Notify if conveyor features are active.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewConveyorSourceList">
+                    <desc>Notify list of available conveyor sources.</desc>
+                    <param desc="List" multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnNewStatusConveyorSource">
+                    <desc>Notify source for conveyor.</desc>
+                    <param desc="Source" multiplicity="1" name="source" type="string"/>
+                </event>
+                <event name="OnNewStatusConveyorResolution">
+                    <desc>Notify resolution of conveyor.</desc>
+                    <param desc="Resolution in mircromenter/increment." multiplicity="1" name="resolution" type="int"/>
+                </event>
+                <event name="OnNewStatusConveyorPrescaler">
+                    <desc>Notify prescaler of conveyor.</desc>
+                    <param desc="Prescaler" multiplicity="1" name="prescaler" type="int"/>
+                </event>
+                <event name="OnNewConveyorInfo">
+                    <desc>Notify current conveyor info data.</desc>
+                    <param desc="Current conveyor info data." multiplicity="1" name="conveyorInfo" type="string"/>
+                </event>
+                <event name="OnConveyorTimeout">
+                    <desc>Notify if conveyor timeout expired.</desc>
+                    <param desc="Timestamp" multiplicity="1" name="timestamp" type="int"/>
+                </event>
+                <event name="OnNewStatusConveyorTimeoutActive">
+                    <desc>Notify if conveyor timeout should be used.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusConveyorTimeoutValue">
+                    <desc>Notify value of conveyor timeout .</desc>
+                    <param desc="Value of timeout (can be mm or ticks)." multiplicity="1" name="timeoutValue" type="int"/>
+                </event>
+                <event name="OnNewStatusConveyorTimeoutMode">
+                    <desc>Notify mode of conveyor timeout.</desc>
+                    <param desc="Mode (TICKS or DISTANCE)." multiplicity="1" name="mode" type="string"/>
+                </event>
+                <event name="OnNewStatusEncoderFeatureActive">
+                    <desc>Notify if encoder features are active.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusModuleIsActive">
+                    <desc>Notify if module can be used on device.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <function name="setParameterName">
+                    <desc>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</desc>
+                    <param desc="Name of the parameter." multiplicity="1" name="name" type="string"/>
+                </function>
+                <function name="sendParameters">
+                    <desc>Send parameters to CSK_PersistentData module if possible to save them.</desc>
+                </function>
+                <function name="loadParameters">
+                    <desc>Load parameters for this module from the CSK_PersistentData module if possible and use them.</desc>
+                </function>
+                <function name="setLoadOnReboot">
+                    <desc>Configure if this module should load its saved parameters at app/device boot up.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="pageCalled">
+                    <desc>Function to register "OnResume" of the module UI (only as helper function).</desc>
+                    <return desc="Empty string (only needed to simplify binding)." multiplicity="1" name="empty" type="string"/>
+                </function>
+                <function name="getEncoderHandle">
+                    <desc>Function to provide the encoder handle.</desc>
+                    <return alias="Encoder" desc="Handle of encoder." multiplicity="1" name="handle" type="handle"/>
+                </function>
+                <function name="setDecoderInstance">
+                    <desc>Function to set decoder instance.</desc>
+                    <param desc="Decoder instance." multiplicity="1" name="instance" type="string"/>
+                </function>
+                <function name="setDecoderHighResoltuion">
+                    <desc>Function to set status of decoder high resolution mode.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setDecoderCountMode">
+                    <desc>Function to set count mode of decoder.</desc>
+                    <param desc="Count mode." multiplicity="1" name="mode" ref="CSK_Encoder.DecoderCountMode" type="enum"/>
+                </function>
+                <function name="setDecoderPrescaler">
+                    <desc>Function to set decoder prescaler.</desc>
+                    <param desc="Prescaler" multiplicity="1" name="prescaler" type="int"/>
+                </function>
+                <function name="setDecoderNumberOfPhases">
+                    <desc>Function to set number of decoder phases.</desc>
+                    <param desc="Phases" multiplicity="1" name="phases" ref="CSK_Encoder.DecoderPhases" type="enum"/>
+                </function>
+                <function name="setEncoderSource">
+                    <desc>Function to set encoder increment source.</desc>
+                    <param desc="Source" multiplicity="1" name="source" type="string"/>
+                </function>
+                <function name="setTimerActive">
+                    <desc>Function to set status of timer to pull increment value periodically.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setTimerCycle">
+                    <desc>Function to set cycte time to pull increment data.</desc>
+                    <param desc="Time in [ms]." multiplicity="1" name="time" type="int"/>
+                </function>
+                <function name="setEncoderInterface">
+                    <desc>Function to set the interface the encoder is connected to.</desc>
+                    <param desc="Interface" multiplicity="1" name="interface" type="string"/>
+                </function>
+                <function name="setConveyorActive">
+                    <desc>Function to set if conveyor features should be active.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setConveyorSource">
+                    <desc>Function to set increment source for conveyor.</desc>
+                    <param desc="Source" multiplicity="1" name="source" type="string"/>
+                </function>
+                <function name="setConveyorResolution">
+                    <desc>Function to set the resolution value of the conveyor.</desc>
+                    <param desc="Resolution in micrometer/increment." multiplicity="1" name="resolution" type="int"/>
+                </function>
+                <function name="setConveyorTimeoutActive">
+                    <desc>Function to set status of conveyor timeout.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setConveyorTimeoutMode">
+                    <desc>Function to set mode of conveyor timeout.</desc>
+                    <param desc="Mode" multiplicity="1" name="mode" ref="CSK_Encoder.ConveyorTimeoutMode" type="enum"/>
+                </function>
+                <function name="setConveyorTimeoutValue">
+                    <desc>Function to set value for conveyor timeout.</desc>
+                    <param desc="Value (depends on conveyor timeout mode to use TICKS or DISTANCE)." multiplicity="1" name="value" type="int"/>
+                </function>
+                <function name="setEncoderFeatureActive">
+                    <desc>Function to set status if encoder features are active.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="getConveyorTimeoutHandle">
+                    <desc>Function to get Conveyor.Timeout handle.</desc>
+                    <return alias="Conveyor.Timeout" desc="Handle" multiplicity="1" name="handle" type="handle"/>
+                </function>
+                <function name="setConveyorPrescaler">
+                    <desc>Function to set the prescaler value for the increment input. If greater than 1 all increment values are scaled with this factor. This can be used if the incoming values need a higher resolution than the increment should have.</desc>
+                    <param desc="Prescaler (Default is 1. Needs to be greater than zero.)" multiplicity="1" name="prescaler" type="int"/>
+                </function>
+            </serves>
+        </crown>
+        <crown name="Engine">
+            <desc>no description yet</desc>
+            <uses>
+                <event name="OnStarted"/>
+                <function name="getEnumValues"/>
+            </uses>
+        </crown>
+        <crown name="Timer">
+            <desc>no description yet</desc>
+            <uses>
+                <event name="OnExpired"/>
+                <function name="create"/>
+                <function name="setPeriodic"/>
+                <function name="start"/>
+                <function name="register"/>
+                <function name="setExpirationTime"/>
+            </uses>
+        </crown>
+        <crown name="Conveyor">
+            <desc>no description yet</desc>
+            <uses>
+                <function name="getSpeed"/>
+                <function name="setPrescaler"/>
+                <function name="setSource"/>
+                <function name="getCurrentIncrement"/>
+                <function name="getTransportMode"/>
+                <function name="setResolution"/>
+            </uses>
+            <crown name="Timeout">
+                <desc>no description yet</desc>
+                <uses>
+                    <event name="OnExpired"/>
+                    <function name="create"/>
+                    <function name="register"/>
+                </uses>
+            </crown>
+        </crown>
+        <crown name="Log">
+            <desc>no description yet</desc>
+            <uses/>
+            <crown name="Handler">
+                <desc>no description yet</desc>
+                <uses>
+                    <function name="create"/>
+                </uses>
+            </crown>
+            <crown name="SharedLogger">
+                <desc>no description yet</desc>
+                <uses>
+                    <function name="create"/>
+                </uses>
+            </crown>
+        </crown>
+        <crown name="Container">
+            <desc>no description yet</desc>
+            <uses>
+                <function name="get"/>
+                <function name="create"/>
+                <function name="list"/>
+                <function name="add"/>
+            </uses>
+        </crown>
+        <crown name="Encoder">
+            <desc>no description yet</desc>
+            <uses>
+                <function name="create"/>
+            </uses>
+        </crown>
+        <crown name="DateTime">
+            <desc>no description yet</desc>
+            <uses>
+                <function name="getTimestamp"/>
+            </uses>
+        </crown>
+        <crown name="string">
+            <desc>no description yet</desc>
+            <uses>
+                <function name="sub"/>
+                <function name="format"/>
+                <function name="char"/>
+            </uses>
+        </crown>
+        <crown name="table">
+            <desc>no description yet</desc>
+            <uses>
+                <function name="insert"/>
+                <function name="sort"/>
+                <function name="concat"/>
+            </uses>
+        </crown>
+        <crown name="Script">
+            <desc>no description yet</desc>
+            <uses>
+                <function name="register"/>
+                <function name="serveFunction"/>
+                <function name="releaseObject"/>
+                <function name="notifyEvent"/>
+                <function name="serveEvent"/>
+            </uses>
+        </crown>
+        <crown name="Object">
+            <desc>no description yet</desc>
+            <uses>
+                <function name="getType"/>
+            </uses>
+        </crown>
+        <crown name="Connector">
+            <desc>no description yet</desc>
+            <uses/>
+            <crown name="Power">
+                <desc>no description yet</desc>
+                <uses>
+                    <function name="enable"/>
+                    <function name="create"/>
+                </uses>
+            </crown>
+        </crown>
+        <crown name="Flow">
+            <desc>no description yet</desc>
+            <uses>
+                <function name="create"/>
+            </uses>
+        </crown>
+        <meta key="author">SICK AG</meta>
+        <meta key="version">0.2.0</meta>
+        <meta key="priority">low</meta>
+        <meta key="copy-protected">false</meta>
+        <meta key="read-protected">false</meta>
+        <meta key="crown2-flow-engine">false</meta>
+        <meta key="LuaLoadAllEngineAPI">false</meta>
+        <entry default="CSK_Module_Encoder.lua" path="scripts"/>
+    </application>
+</manifest>

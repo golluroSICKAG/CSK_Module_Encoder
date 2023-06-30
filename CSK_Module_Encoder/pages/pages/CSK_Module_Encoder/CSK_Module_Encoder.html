@@ -1,0 +1,493 @@
+<layout-row id="RowLayout1">
+	<layout-column id="ColumnLayout1"
+		style="align-items: stretch; flex-grow: 2">
+        <stacked-view id="SV_FeatureSupport">
+			<stacked-pane id="SP_Empty" value="true">
+				<stacked-view id="SV_Login">
+					<stacked-pane id="SP_LoginOK" value="true">
+						<layout-row id="RowLayout5">
+							<layout-column id="ColumnLayout7" style="align-items: stretch">
+								<davinci-value-display id="VD_EncoderConfig"
+									label="Encoder configuration">
+								</davinci-value-display>
+								<layout-row id="RowLayout7" class="myCustomFrame_CSK_Module_Encoder"
+									style="align-items: stretch">
+									<layout-column id="ColumnLayout33"
+										style="align-items: stretch; justify-content: space-between">
+										<davinci-value-display id="VD_EncoderActive" value="Active">
+										</davinci-value-display>
+										<layout-row id="RowLayout12" style="justify-content: center">
+											<davinci-toggle-switch id="TS_EncoderActive" title="Active"
+												style="align-self: center">
+												<crown-edpws-binding property="checked"
+													name="CSK_Encoder/OnNewStatusEncoderFeatureActive"
+													update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change"
+													name="CSK_Encoder/setEncoderFeatureActive"
+													path="param/args/status" auto-commit>
+												</crown-binding>
+											</davinci-toggle-switch>
+										</layout-row>
+									</layout-column>
+									<layout-column id="ColumnLayout17" style="align-items: stretch">
+										<davinci-drop-down id="DD_EncoderInterface" label="Encoder Interface">
+											<crown-edpws-binding property="data"
+												name="CSK_Encoder/OnNewEncoderInterfaceList" update-on-resume
+												converter="convertToList">
+											</crown-edpws-binding>
+											<crown-edpws-binding property="value"
+												name="CSK_Encoder/OnNewStatusEncoderInterface" update-on-resume>
+											</crown-edpws-binding>
+											<crown-binding event="change" name="CSK_Encoder/setEncoderInterface"
+												path="param/args/interface" auto-commit>
+											</crown-binding>
+										</davinci-drop-down>
+									</layout-column>
+									<layout-column id="ColumnLayout32" style="align-items: stretch">
+										<davinci-drop-down id="DD_EncoderSource" label="Encoder source">
+											<crown-edpws-binding property="data"
+												name="CSK_Encoder/OnNewEncoderIncrementSourceList"
+												update-on-resume converter="convertToList">
+											</crown-edpws-binding>
+											<crown-edpws-binding property="value"
+												name="CSK_Encoder/OnNewStatusEncoderSource" update-on-resume>
+											</crown-edpws-binding>
+											<crown-binding event="change" name="CSK_Encoder/setEncoderSource"
+												path="param/args/source" auto-commit>
+											</crown-binding>
+										</davinci-drop-down>
+									</layout-column>
+									<layout-column id="ColumnLayout20"
+										style="align-items: stretch; flex-grow: 2">
+									</layout-column>
+								</layout-row>
+								<layout-row id="RowLayout9">
+									<layout-column id="ColumnLayout14" style="align-items: stretch">
+										<davinci-value-display id="VD_DecoderConfig"
+											label="Decoder configuration">
+										</davinci-value-display>
+										<layout-row id="RowLayout8" class="myCustomFrame_CSK_Module_Encoder"
+											style="align-items: stretch">
+											<layout-column id="ColumnLayout9" style="align-items: stretch">
+												<davinci-value-display id="VD_DecoderInstance"
+													value="Decoder instance">
+												</davinci-value-display>
+												<davinci-drop-down id="DD_DecoderInstance">
+												<crown-edpws-binding property="data"
+													name="CSK_Encoder/OnNewDecoderInstanceList" update-on-resume
+													converter="convertToList">
+												</crown-edpws-binding>
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewStatusDecoderInstance" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_Encoder/setDecoderInstance"
+													path="param/args/instance" auto-commit>
+												</crown-binding>
+												</davinci-drop-down>
+											</layout-column>
+											<layout-column id="ColumnLayout13"
+												style="align-items: stretch; justify-content: space-between">
+												<davinci-value-display id="VD_HighResolutionMode"
+													value="HighResolution Mode">
+												</davinci-value-display>
+												<layout-row id="RowLayout13" style="justify-content: center">
+												<davinci-toggle-switch id="TS_HighResolutionMode"
+													style="align-self: center">
+												<crown-edpws-binding property="checked"
+													name="CSK_Encoder/OnNewStatusDecoderHighResolution"
+													update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change"
+													name="CSK_Encoder/setDecoderHighResoltuion"
+													path="param/args/status" auto-commit>
+												</crown-binding>
+												</davinci-toggle-switch>
+												</layout-row>
+											</layout-column>
+											<layout-column id="ColumnLayout12" style="align-items: stretch">
+												<davinci-value-display id="VD_CountMode" value="Count mode">
+												</davinci-value-display>
+												<davinci-drop-down id="DD_CountMode">
+												<davinci-option id="Option_BIDIRECTIONAL" value="BIDIRECTIONAL">
+												<span>BIDIRECTIONAL</span>
+												</davinci-option>
+												<davinci-option id="Option_POSITIVE_MOVEMENT"
+													value="POSITIVE_MOVEMENT">
+												<span>POSITIVE_MOVEMENT</span>
+												</davinci-option>
+												<davinci-option id="Option_NEGATIVE_MOVEMENT"
+													value="NEGATIVE_MOVEMENT">
+												<span>NEGATIVE_MOVEMENT</span>
+												</davinci-option>
+												<davinci-option id="Option_FORWARD_MOVEMENT" value="FORWARD_MOVEMENT">
+												<span>FORWARD_MOVEMENT</span>
+												</davinci-option>
+												<davinci-option id="Option_BACKWARD_MOVEMENT"
+													value="BACKWARD_MOVEMENT">
+												<span>BACKWARD_MOVEMENT</span>
+												</davinci-option>
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewStatusDecoderCountMode" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_Encoder/setDecoderCountMode"
+													path="param/args/mode" auto-commit>
+												</crown-binding>
+												</davinci-drop-down>
+											</layout-column>
+											<layout-column id="ColumnLayout11" style="align-items: stretch">
+												<davinci-value-display id="VD_Prescaler" value="Prescaler">
+												</davinci-value-display>
+												<davinci-numeric-field id="NF_Prescaler" type="outline" min="1"
+													max="10000000" ticks="1" group-separator="," decimal-separator="."
+													format-pattern="0">
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewStatusDecoderPrescaler" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_Encoder/setDecoderPrescaler"
+													path="param/args/prescaler" auto-commit>
+												</crown-binding>
+												</davinci-numeric-field>
+											</layout-column>
+											<layout-column id="ColumnLayout10" style="align-items: stretch">
+												<davinci-value-display id="VD_NumberOfPhases"
+													value="Number of phases">
+												</davinci-value-display>
+												<davinci-drop-down id="DD_NumberOfPhases">
+												<davinci-option id="Option_SINGLE_PHASE" value="SINGLE_PHASE">
+												<span>SINGLE_PHASE</span>
+												</davinci-option>
+												<davinci-option id="Option_DUAL_PHASE" value="DUAL_PHASE">
+												<span>DUAL_PHASE</span>
+												</davinci-option>
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewStatusDecoderNumberOfPhases"
+													update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change"
+													name="CSK_Encoder/setDecoderNumberOfPhases"
+													path="param/args/phases" auto-commit>
+												</crown-binding>
+												</davinci-drop-down>
+											</layout-column>
+										</layout-row>
+									</layout-column>
+								</layout-row>
+								<layout-row id="RowLayout15">
+									<layout-column id="ColumnLayout8" style="align-items: stretch">
+										<davinci-value-display id="VD_ConveyorConfig"
+											label="Conveyor configuration">
+										</davinci-value-display>
+										<layout-row id="RowLayout16" class="myCustomFrame_CSK_Module_Encoder"
+											style="align-items: stretch">
+											<layout-column id="ColumnLayout24"
+												style="justify-content: space-between; align-items: stretch">
+												<davinci-value-display id="VD_ConveyorActive" value="Active">
+												</davinci-value-display>
+												<layout-row id="RowLayout17" style="justify-content: center">
+												<davinci-toggle-switch id="TS_ConveyorActive"
+													style="align-self: center">
+												<crown-edpws-binding property="checked"
+													name="CSK_Encoder/OnNewStatusConveyorActive" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_Encoder/setConveyorActive"
+													path="param/args/status" auto-commit>
+												</crown-binding>
+												</davinci-toggle-switch>
+												</layout-row>
+											</layout-column>
+											<layout-column id="ColumnLayout21" style="align-items: stretch">
+												<davinci-value-display id="VD_ConveyorSource" value="Source">
+												</davinci-value-display>
+												<davinci-drop-down id="DD_ConveyorSource">
+												<crown-edpws-binding property="data"
+													name="CSK_Encoder/OnNewConveyorSourceList" update-on-resume
+													converter="convertToList">
+												</crown-edpws-binding>
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewStatusConveyorSource" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_Encoder/setConveyorSource"
+													path="param/args/source" auto-commit>
+												</crown-binding>
+												</davinci-drop-down>
+											</layout-column>
+											<layout-column id="ColumnLayout23" style="align-items: stretch">
+												<davinci-value-display id="VD_ConveyorResolution" value="Resolution"
+													title="The resolution in micrometer/increment">
+												</davinci-value-display>
+												<davinci-numeric-field id="NF_ConveyorResolution" type="outline"
+													min="1" max="10000000" ticks="1" group-separator=","
+													decimal-separator="." format-pattern="0"
+													title="The resolution in micrometer/increment">
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewStatusConveyorResolution" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_Encoder/setConveyorResolution"
+													path="param/args/resolution" auto-commit>
+												</crown-binding>
+												</davinci-numeric-field>
+											</layout-column>
+											<layout-column id="ColumnLayout22" style="align-items: stretch">
+												<davinci-value-display id="VD_ConveyorPrescaler" value="Prescaler"
+													title="If greater than 1 all increment values are scaled with this factor">
+												</davinci-value-display>
+												<davinci-numeric-field id="NF_ConveyorPrescaler" type="outline"
+													min="1" max="10000000" ticks="1" group-separator=","
+													decimal-separator="." format-pattern="0"
+													title="If greater than 1 all increment values are scaled with this factor">
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewStatusConveyorPrescaler" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_Encoder/setConveyorPrescaler"
+													path="param/args/prescaler" auto-commit>
+												</crown-binding>
+												</davinci-numeric-field>
+											</layout-column>
+											<layout-column id="ColumnLayout25" style="align-items: stretch">
+											</layout-column>
+										</layout-row>
+									</layout-column>
+								</layout-row>
+								<layout-row id="RowLayout10">
+									<layout-column id="ColumnLayout15" style="align-items: stretch">
+										<davinci-value-display id="VD_Timer" label="Timer configuration">
+										</davinci-value-display>
+										<layout-row id="RowLayout11" class="myCustomFrame_CSK_Module_Encoder"
+											style="align-items: stretch">
+											<layout-column id="ColumnLayout16"
+												style="align-items: stretch; justify-content: space-between">
+												<davinci-value-display id="VD_TimerActive" value="Active">
+												</davinci-value-display>
+												<layout-row id="RowLayout14" style="justify-content: center">
+												<davinci-toggle-switch id="TS_TimerActive" style="align-self: center">
+												<crown-edpws-binding property="checked"
+													name="CSK_Encoder/OnNewStatusTimerActive" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_Encoder/setTimerActive"
+													path="param/args/status" auto-commit>
+												</crown-binding>
+												</davinci-toggle-switch>
+												</layout-row>
+											</layout-column>
+											<layout-column id="ColumnLayout19" style="align-items: stretch">
+												<davinci-value-display id="VD_CycleTime" value="Cycle time">
+												</davinci-value-display>
+												<davinci-numeric-field id="NF_CycleTime" type="outline"
+													min="-9007199254740991" max="9007199254740991" ticks="1"
+													group-separator="," decimal-separator="." format-pattern="0">
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewStatusTimerCycle" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_Encoder/setTimerCycle"
+													path="param/args/time" auto-commit>
+												</crown-binding>
+												</davinci-numeric-field>
+											</layout-column>
+											<layout-column id="ColumnLayout18"
+												style="align-items: stretch; flex-grow: 3">
+												<davinci-value-display id="VD_IncrementInfo"
+													value="Increment / Conveyor info">
+												</davinci-value-display>
+												<davinci-text-field id="TF_IncrementStatusInfo" type="text" readonly
+													label="Increment">
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewIncrementInfo" update-on-resume>
+												</crown-edpws-binding>
+												</davinci-text-field>
+												<davinci-text-field id="TF_ConveyorStatusInfo" type="text"
+													label="Conveyor" readonly>
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewConveyorInfo" update-on-resume>
+												</crown-edpws-binding>
+												</davinci-text-field>
+											</layout-column>
+										</layout-row>
+									</layout-column>
+								</layout-row>
+								<layout-row id="RowLayout18">
+									<layout-column id="ColumnLayout26" style="align-items: stretch">
+										<davinci-value-display id="VD_ConveyorTimeout"
+											label="Conveyor Timeout">
+										</davinci-value-display>
+										<layout-row id="RowLayout19" class="myCustomFrame_CSK_Module_Encoder"
+											style="align-items: stretch">
+											<layout-column id="ColumnLayout27"
+												style="align-items: stretch; justify-content: space-between">
+												<davinci-value-display id="VD_ConveyorTimeoutActive" value="Active">
+												</davinci-value-display>
+												<layout-row id="RowLayout20" style="justify-content: center">
+												<davinci-toggle-switch id="TS_ConveyorTimeoutActive"
+													style="align-self: center">
+												<crown-edpws-binding property="checked"
+													name="CSK_Encoder/OnNewStatusConveyorTimeoutActive"
+													update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change"
+													name="CSK_Encoder/setConveyorTimeoutActive"
+													path="param/args/status" auto-commit>
+												</crown-binding>
+												</davinci-toggle-switch>
+												</layout-row>
+											</layout-column>
+											<layout-column id="ColumnLayout31" style="align-items: stretch">
+												<davinci-value-display id="VD_ConveyorTimeoutMode" value="Mode">
+												</davinci-value-display>
+												<davinci-drop-down id="DD_ConveyorTimeoutMode">
+												<davinci-option id="Option_Ticks" value="TICKS">
+												<span>TICKS</span>
+												</davinci-option>
+												<davinci-option id="Option_Distance" value="DISTANCE">
+												<span>DISTANCE</span>
+												</davinci-option>
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewStatusConveyorTimeoutMode"
+													update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change"
+													name="CSK_Encoder/setConveyorTimeoutMode" path="param/args/mode"
+													auto-commit>
+												</crown-binding>
+												</davinci-drop-down>
+											</layout-column>
+											<layout-column id="ColumnLayout30" style="align-items: stretch">
+												<davinci-value-display id="VD_ConveyorTimeoutValue"
+													value="Timeout value">
+												</davinci-value-display>
+												<davinci-numeric-field id="NF_ConveyorTimeoutValue" type="outline"
+													min="-9007199254740991" max="9007199254740991" ticks="1"
+													group-separator="," decimal-separator="." format-pattern="0">
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewStatusConveyorTimeoutValue"
+													update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change"
+													name="CSK_Encoder/setConveyorTimeoutValue" path="param/args/value"
+													auto-commit>
+												</crown-binding>
+												</davinci-numeric-field>
+											</layout-column>
+											<layout-column id="ColumnLayout29" style="align-items: stretch">
+											</layout-column>
+											<layout-column id="ColumnLayout28" style="align-items: stretch">
+											</layout-column>
+										</layout-row>
+									</layout-column>
+								</layout-row>
+								<layout-row id="RowLayout6">
+									<layout-column id="Column_PersistentData"
+										class="myCustomFrame_CSK_Module_Encoder"
+										style="align-items: stretch">
+										<layout-row id="RowLayout4"
+											style="justify-content: space-between; align-items: center">
+											<layout-column id="ColumnLayout5" style="align-items: stretch">
+												<davinci-value-display id="VD_ParameterName" value="Parameter name:"
+													title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+												</davinci-value-display>
+											</layout-column>
+											<layout-column id="ColumnLayout6" style="align-items: stretch">
+												<davinci-text-field id="TF_ParameterName" type="text"
+													title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+												<crown-edpws-binding property="value"
+													name="CSK_Encoder/OnNewParameterName" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_Encoder/setParameterName"
+													path="param/args/name" auto-commit>
+												</crown-binding>
+												<crown-edpws-binding property="disabled"
+													name="CSK_Encoder/OnPersistentDataModuleAvailable"
+													update-on-resume converter="function(value) {return !value;}">
+												</crown-edpws-binding>
+												</davinci-text-field>
+											</layout-column>
+										</layout-row>
+										<layout-row id="RowLayout2"
+											style="justify-content: space-between; align-items: center">
+											<davinci-value-display id="VD_LoadConfig"
+												value="Load config on app start:"
+												title="Load configured parameters from CSK_PersistentData on app start.">
+											</davinci-value-display>
+											<davinci-checkbox id="CB_LoadConfig"
+												title="Load configured parameters from CSK_PersistentData on app start.">
+												<span></span>
+												<crown-edpws-binding property="checked"
+													name="CSK_Encoder/OnNewStatusLoadParameterOnReboot"
+													update-on-resume>
+												</crown-edpws-binding>
+												<crown-edpws-binding property="disabled"
+													name="CSK_Encoder/OnPersistentDataModuleAvailable"
+													update-on-resume converter="function(value) {return !value;}">
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_Encoder/setLoadOnReboot"
+													path="param/args/status" auto-commit>
+												</crown-binding>
+											</davinci-checkbox>
+										</layout-row>
+										<layout-row id="RowLayout3">
+											<layout-column id="ColumnLayout3" style="align-items: stretch">
+												<davinci-button id="B_LoadConfig" type="primary"
+													icon-position="append"
+													title="Load configured parameters from CSK_PersistentData module.">
+												<span>Load Config</span>
+												<crown-binding event="submit" name="CSK_Encoder/loadParameters"
+													auto-commit>
+												</crown-binding>
+												<crown-edpws-binding property="disabled"
+													name="CSK_Encoder/OnPersistentDataModuleAvailable"
+													update-on-resume converter="function(value) {return !value;}">
+												</crown-edpws-binding>
+												</davinci-button>
+											</layout-column>
+											<layout-column id="ColumnLayout4" style="align-items: stretch">
+												<davinci-button id="B_SaveConfig" type="primary"
+													icon-position="append"
+													title="Save current configured parameters of this module within CSK_PersistentData module.">
+												<span>Save Config</span>
+												<crown-binding event="submit" name="CSK_Encoder/sendParameters"
+													auto-commit>
+												</crown-binding>
+												<crown-edpws-binding property="disabled"
+													name="CSK_Encoder/OnPersistentDataModuleAvailable"
+													update-on-resume converter="function(value) {return !value;}">
+												</crown-edpws-binding>
+												</davinci-button>
+											</layout-column>
+										</layout-row>
+									</layout-column>
+								</layout-row>
+							</layout-column>
+						</layout-row>
+					</stacked-pane>
+					<stacked-pane id="SP_LoginNotOK" value="false">
+						<davinci-callout id="Callout1" type="info">
+							<span>
+								Please login via CSK_UserManagement module (at least with user level &quot;Operator&quot; or higher).
+							</span>
+						</davinci-callout>
+					</stacked-pane>
+					<crown-edpws-binding property="value"
+						name="CSK_Encoder/OnUserLevelOperatorActive" update-on-resume
+						converter="function(value) {return value.toString();}">
+					</crown-edpws-binding>
+				</stacked-view>
+			</stacked-pane>
+            <stacked-pane id="SP_NoSupport" value="false">
+				<davinci-callout id="Callout2" type="warning">
+					<span>Module is not supported on this device...</span>
+				</davinci-callout>
+			</stacked-pane>
+			<crown-edpws-binding property="value"
+				name="CSK_Encoder/OnNewStatusModuleIsActive" update-on-resume
+				converter="function(value) {return value.toString();}">
+			</crown-edpws-binding>
+		</stacked-view>
+		<stacked-view id="SV_PageCalled">
+			<crown-binding property="value" name="CSK_Encoder/pageCalled"
+				path="result/data/empty" auto-update="0" update-on-resume>
+			</crown-binding>
+		</stacked-view>
+	</layout-column>
+	<layout-column id="ColumnLayout2" style="align-items: stretch">
+	</layout-column>
+  
+</layout-row>
