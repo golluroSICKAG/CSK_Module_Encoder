@@ -71,7 +71,7 @@ if _G.availableAPIs.specific then
 
   -- Parameters to be saved permanently if wanted
   encoder_Model.parameters = {}
-  encoder_Model.parameters = require('Sensors/Encoder/Encoder_Parameters')
+  encoder_Model.parameters = encoder_Model.helperFuncs.defaultParameters.getParameters() -- Load default parameters
 
   encoder_Model.parameters.encoderInterface = encoder_Model.availableInterfaces[1] -- Source of connected encoder (e.g. S4, INC, SER1)
   encoder_Model.parameters.encoderSource = encoder_Model.availableEncoderIncrementSources[1]  -- Devices identifier of the encoder (e.g. ENC1)

@@ -395,7 +395,7 @@ local function loadParameters()
       _G.logger:info(nameOfModule .. ": Loaded parameters from CSK_PersistentData module.")
       encoder_Model.parameters = encoder_Model.helperFuncs.convertContainer2Table(data)
 
-      encoder_Model.parameters = encoder_Model.helperFuncs.checkParameters(encoder_Model.parameters)
+      encoder_Model.parameters = encoder_Model.helperFuncs.checkParameters(encoder_Model.parameters, encoder_Model.helperFuncs.defaultParameters.getParameters())
 
       encoder_Model.setupEncoder()
       CSK_Encoder.pageCalled()
