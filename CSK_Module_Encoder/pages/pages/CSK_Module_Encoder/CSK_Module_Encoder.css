@@ -1,9 +1,81 @@
-.myCustomFrame_CSK_Module_Encoder {
-  border-style: solid;
-  border-width: 1px;
-  border-color: grey;
-  margin: 6px;
+.myCustomSpacerVert10_CSK_Module_Encoder {
+  min-height: 10px;
 }
 
-.myCustomCssClass_CSK_Module_Encoder {
+.myCustomSpacerVert20_CSK_Module_Encoder {
+  min-height: 20px;
+}
+
+.myCustomFrameNoColor_CSK_Module_Encoder {
+  margin: 6px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 0px;
+  border-color: 007CC1;
+  background-color: white;
+}
+
+.myCustomFrame_CSK_Module_Encoder {
+  margin: 6px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #007CC1;
+  background-color: white;
+}
+
+.myCustomLabel_CSK_Module_Encoder {
+  font-size:30px;
+  color: grey;
+  margin-top: 10px;
+}
+
+.myCustomFrameLabel_CSK_Module_Encoder {
+  background: white;
+  position:relative;
+  top: calc(-1.2rem);
+  left: calc(1rem);
+  font-size: medium;
+}
+
+.myCustomPersistentDataMargin_CSK_Module_Encoder {
+  margin-top: -53px;
+  margin-left: 130px;
+}
+
+.myCustomPersistentDataMarginBack_CSK_Module_Encoder {
+  margin-left: -127px;
+}
+
+.myCustomBorderLeft_CSK_Module_Encoder {
+  border-left: 1px solid lightgray;
+}
+
+.myCustomMarginFirstRow_CSK_Module_Encoder {
+  margin-top: -49px;
+}
+
+.myCustomBorderBottom_CSK_Module_Encoder {
+  border-bottom: 1px solid lightgray;
+  margin-inline: calc(1rem);
+}
+
+.myCustomMarginTop7PX_CSK_Module_Encoder {
+  margin-top: 7px;
+}
+
+.myCustomBackground_CSK_Module_Encoder {
+}
+
+.myCustomButton_CSK_Module_Encoder {
+  border-radius: 30px;
+  padding-right: 0px;
+}
+
+.myCustomMarginInline1Rem_CSK_Module_Encoder {
+  margin-inline: calc(1rem);
+}
+
+.myMinWidht100p_CSK_Module_Encoder {
+  min-width: 100%;
 }

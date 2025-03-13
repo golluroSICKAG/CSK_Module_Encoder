@@ -43,6 +43,13 @@ _G.logHandle:applyConfig()
 -- Check this script regarding encoder_Model parameters and functions
 _G.encoder_Model = require('Sensors/Encoder/Encoder_Model')
 
+-- If using FlowConfig activate following code line
+require('Sensors/Encoder/FlowConfig/Encoder_FlowConfig')
+
+if _G.availableAPIs.default == false or _G.availableAPIs.specific == false then
+  _G.logger:warning("CSK_Encoder: Relevant CROWN(s) not available on device. Module is not supported...")
+end
+
 --**************************************************************************
 --**********************End Global Scope ***********************************
 --**************************************************************************

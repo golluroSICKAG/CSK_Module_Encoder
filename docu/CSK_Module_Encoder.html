@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.12">
 <meta name="author" content="SICK AG">
-<title>Documentation - CSK_Module_Encoder 0.2.0</title>
+<title>Documentation - CSK_Module_Encoder 1.0.0</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 /* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
@@ -615,11 +615,11 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Documentation - CSK_Module_Encoder 0.2.0</h1>
+<h1>Documentation - CSK_Module_Encoder 1.0.0</h1>
 <div class="details">
 <span id="author" class="author">SICK AG</span><br>
-<span id="revnumber">version 0.2.0,</span>
-<span id="revdate">2023-06-19</span>
+<span id="revnumber">version 1.0.0,</span>
+<span id="revdate">2025-03-13</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -633,10 +633,14 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 <li><a href="#_overview">Overview</a></li>
 <li><a href="#_functions">Functions</a>
 <ul class="sectlevel4">
+<li><a href="#API:Function:CSK_Encoder.clearFlowConfigRelevantConfiguration"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">clearFlowConfigRelevantConfiguration()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.getConveyorTimeoutHandle"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">getConveyorTimeoutHandle()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.getEncoderHandle"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">getEncoderHandle()</span></a></li>
+<li><a href="#API:Function:CSK_Encoder.getParameters"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">getParameters()</span></a></li>
+<li><a href="#API:Function:CSK_Encoder.getStatusModuleActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">getStatusModuleActive()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.loadParameters"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">loadParameters()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.pageCalled"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">pageCalled()</span></a></li>
+<li><a href="#API:Function:CSK_Encoder.resetModule"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">resetModule()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.sendParameters"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">sendParameters()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.setConveyorActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorActive()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.setConveyorPrescaler"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorPrescaler()</span></a></li>
@@ -653,6 +657,7 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 <li><a href="#API:Function:CSK_Encoder.setEncoderFeatureActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setEncoderFeatureActive()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.setEncoderInterface"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setEncoderInterface()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.setEncoderSource"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setEncoderSource()</span></a></li>
+<li><a href="#API:Function:CSK_Encoder.setFlowConfigPriority"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setFlowConfigPriority()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.setLoadOnReboot"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setLoadOnReboot()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.setParameterName"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setParameterName()</span></a></li>
 <li><a href="#API:Function:CSK_Encoder.setTimerActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setTimerActive()</span></a></li>
@@ -677,6 +682,7 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusConveyorTimeoutActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusConveyorTimeoutActive</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusConveyorTimeoutMode"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusConveyorTimeoutMode</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusConveyorTimeoutValue"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusConveyorTimeoutValue</span></a></li>
+<li><a href="#API:Event:CSK_Encoder.OnNewStatusCSKStyle"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusCSKStyle</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusDecoderCountMode"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusDecoderCountMode</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusDecoderHighResolution"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusDecoderHighResolution</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusDecoderInstance"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusDecoderInstance</span></a></li>
@@ -685,8 +691,10 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusEncoderFeatureActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusEncoderFeatureActive</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusEncoderInterface"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusEncoderInterface</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusEncoderSource"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusEncoderSource</span></a></li>
+<li><a href="#API:Event:CSK_Encoder.OnNewStatusFlowConfigPriority"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusFlowConfigPriority</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusLoadParameterOnReboot"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusLoadParameterOnReboot</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusModuleIsActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusModuleIsActive</span></a></li>
+<li><a href="#API:Event:CSK_Encoder.OnNewStatusModuleVersion"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusModuleVersion</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusTimerActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusTimerActive</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnNewStatusTimerCycle"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusTimerCycle</span></a></li>
 <li><a href="#API:Event:CSK_Encoder.OnPersistentDataModuleAvailable"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnPersistentDataModuleAvailable</span></a></li>
@@ -700,8 +708,31 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 </li>
 <li><a href="#API:Crown:CSK_Module_Encoder"><span class="api-crown">CSK_Module_Encoder</span></a>
 <ul class="sectlevel3">
-<li><a href="#_short_description_59">Short description</a></li>
+<li><a href="#_short_description_67">Short description</a></li>
 <li><a href="#_overview_2">Overview</a></li>
+</ul>
+</li>
+<li><a href="#API:Crown:Encoder_FC"><span class="api-crown">Encoder_FC</span></a>
+<ul class="sectlevel3">
+<li><a href="#_short_description_68">Short description</a></li>
+<li><a href="#_overview_3">Overview</a></li>
+</ul>
+</li>
+<li><a href="#API:Crown:Encoder_FC.OnNewData"><span class="api-crown">Encoder_FC.OnNewData</span></a>
+<ul class="sectlevel3">
+<li><a href="#_short_description_69">Short description</a></li>
+<li><a href="#_overview_4">Overview</a></li>
+<li><a href="#_functions_2">Functions</a>
+<ul class="sectlevel4">
+<li><a href="#API:Function:Encoder_FC.OnNewData.create"><span class="breadcrumb">Encoder_FC.OnNewData.</span><span class="api-function">create()</span></a></li>
+<li><a href="#API:Function:Encoder_FC.OnNewData.register"><span class="breadcrumb">Encoder_FC.OnNewData.</span><span class="api-function">register()</span></a></li>
+</ul>
+</li>
+<li><a href="#_events_2">Events</a>
+<ul class="sectlevel4">
+<li><a href="#API:Event:Encoder_FC.OnNewData.OnNewData"><span class="breadcrumb">Encoder_FC.OnNewData.</span><span class="api-event">OnNewData</span></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -711,6 +742,7 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 <li><a href="#API:Enum:CSK_Encoder.ConveyorTimeoutMode"><span class="api-enum">CSK_Encoder.ConveyorTimeoutMode</span></a></li>
 <li><a href="#API:Enum:CSK_Encoder.DecoderCountMode"><span class="api-enum">CSK_Encoder.DecoderCountMode</span></a></li>
 <li><a href="#API:Enum:CSK_Encoder.DecoderPhases"><span class="api-enum">CSK_Encoder.DecoderPhases</span></a></li>
+<li><a href="#API:Enum:Encoder_FC.DataMode"><span class="api-enum">Encoder_FC.DataMode</span></a></li>
 </ul>
 </li>
 </ul>
@@ -732,11 +764,11 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Version</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.0</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Date</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2023-06-19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2025-03-13</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Author</p></th>
@@ -764,6 +796,19 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 </ul>
 </div>
 </dd>
+<dt class="hdlist1">E</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#API:Crown:Encoder_FC">Encoder_FC</a></p>
+</li>
+<li>
+<p><a href="#API:Crown:Encoder_FC.OnNewData">Encoder_FC.OnNewData</a></p>
+</li>
+</ul>
+</div>
+</dd>
 </dl>
 </div>
 <div class="sect2">
@@ -786,7 +831,7 @@ Activate encoder feature (setEncoderFeatureActive).<br>
 <strong>2) Pulling encoder / conveyor data periodically</strong><br>
 It is possible to configure a timer to periodically pull encoder / conveyor data.<br>
 Set the cycle time via setTimerCycle and activate it via setTimerActive.<br>
-If activated it will pull now the encoder / conveyor data and provide it via the OnNewEncoderInfo / OnNewConveyorInfo events.<br>
+If activated it will pull now the encoder / conveyor data and provide it via the OnNewIncrementInfo / OnNewConveyorInfo events.<br>
 <br>
 <strong> 3) Use ConveyorTimeout</strong><br>
 It is possible to configure a ConveyorTimeout to receive an event if the conveyor moved for a defined amount of ticks or a distance.<br>
@@ -802,16 +847,28 @@ You can make use of the mentioned features / events from other apps or you can d
 <div class="ulist">
 <ul>
 <li>
+<p><a href="#API:Function:CSK_Encoder.clearFlowConfigRelevantConfiguration">clearFlowConfigRelevantConfiguration()</a></p>
+</li>
+<li>
 <p><a href="#API:Function:CSK_Encoder.getConveyorTimeoutHandle">getConveyorTimeoutHandle()</a></p>
 </li>
 <li>
 <p><a href="#API:Function:CSK_Encoder.getEncoderHandle">getEncoderHandle()</a></p>
 </li>
 <li>
+<p><a href="#API:Function:CSK_Encoder.getParameters">getParameters()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_Encoder.getStatusModuleActive">getStatusModuleActive()</a></p>
+</li>
+<li>
 <p><a href="#API:Function:CSK_Encoder.loadParameters">loadParameters()</a></p>
 </li>
 <li>
 <p><a href="#API:Function:CSK_Encoder.pageCalled">pageCalled()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_Encoder.resetModule">resetModule()</a></p>
 </li>
 <li>
 <p><a href="#API:Function:CSK_Encoder.sendParameters">sendParameters()</a></p>
@@ -860,6 +917,9 @@ You can make use of the mentioned features / events from other apps or you can d
 </li>
 <li>
 <p><a href="#API:Function:CSK_Encoder.setEncoderSource">setEncoderSource()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_Encoder.setFlowConfigPriority">setFlowConfigPriority()</a></p>
 </li>
 <li>
 <p><a href="#API:Function:CSK_Encoder.setLoadOnReboot">setLoadOnReboot()</a></p>
@@ -922,6 +982,9 @@ You can make use of the mentioned features / events from other apps or you can d
 <p><a href="#API:Event:CSK_Encoder.OnNewStatusConveyorTimeoutValue">OnNewStatusConveyorTimeoutValue</a></p>
 </li>
 <li>
+<p><a href="#API:Event:CSK_Encoder.OnNewStatusCSKStyle">OnNewStatusCSKStyle</a></p>
+</li>
+<li>
 <p><a href="#API:Event:CSK_Encoder.OnNewStatusDecoderCountMode">OnNewStatusDecoderCountMode</a></p>
 </li>
 <li>
@@ -946,10 +1009,16 @@ You can make use of the mentioned features / events from other apps or you can d
 <p><a href="#API:Event:CSK_Encoder.OnNewStatusEncoderSource">OnNewStatusEncoderSource</a></p>
 </li>
 <li>
+<p><a href="#API:Event:CSK_Encoder.OnNewStatusFlowConfigPriority">OnNewStatusFlowConfigPriority</a></p>
+</li>
+<li>
 <p><a href="#API:Event:CSK_Encoder.OnNewStatusLoadParameterOnReboot">OnNewStatusLoadParameterOnReboot</a></p>
 </li>
 <li>
 <p><a href="#API:Event:CSK_Encoder.OnNewStatusModuleIsActive">OnNewStatusModuleIsActive</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_Encoder.OnNewStatusModuleVersion">OnNewStatusModuleVersion</a></p>
 </li>
 <li>
 <p><a href="#API:Event:CSK_Encoder.OnNewStatusTimerActive">OnNewStatusTimerActive</a></p>
@@ -978,9 +1047,26 @@ You can make use of the mentioned features / events from other apps or you can d
 <div class="sect3">
 <h4 id="_functions">Functions</h4>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.getConveyorTimeoutHandle"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">getConveyorTimeoutHandle()</span></h5>
+<h5 id="API:Function:CSK_Encoder.clearFlowConfigRelevantConfiguration"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">clearFlowConfigRelevantConfiguration()</span></h5>
 <div class="sect5">
 <h6 id="_short_description_2">Short description</h6>
+<div class="paragraph">
+<p>Function to clear FlowConfig relevant configurations.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.clearFlowConfigRelevantConfiguration()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.getConveyorTimeoutHandle"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">getConveyorTimeoutHandle()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_3">Short description</h6>
 <div class="paragraph">
 <p>Function to get Conveyor.Timeout handle.</p>
 </div>
@@ -1014,7 +1100,7 @@ You can make use of the mentioned features / events from other apps or you can d
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_2">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">handle = CSK_Encoder.getConveyorTimeoutHandle()</code></pre>
@@ -1025,7 +1111,7 @@ You can make use of the mentioned features / events from other apps or you can d
 <div class="sect4">
 <h5 id="API:Function:CSK_Encoder.getEncoderHandle"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">getEncoderHandle()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_3">Short description</h6>
+<h6 id="_short_description_4">Short description</h6>
 <div class="paragraph">
 <p>Function to provide the encoder handle.</p>
 </div>
@@ -1059,7 +1145,7 @@ You can make use of the mentioned features / events from other apps or you can d
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_2">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_3">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">handle = CSK_Encoder.getEncoderHandle()</code></pre>
@@ -1068,28 +1154,11 @@ You can make use of the mentioned features / events from other apps or you can d
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.loadParameters"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">loadParameters()</span></h5>
-<div class="sect5">
-<h6 id="_short_description_4">Short description</h6>
-<div class="paragraph">
-<p>Load parameters for this module from the CSK_PersistentData module if possible and use them.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_3">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.loadParameters()</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Function:CSK_Encoder.pageCalled"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">pageCalled()</span></h5>
+<h5 id="API:Function:CSK_Encoder.getParameters"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">getParameters()</span></h5>
 <div class="sect5">
 <h6 id="_short_description_5">Short description</h6>
 <div class="paragraph">
-<p>Function to register "OnResume" of the module UI (only as helper function).</p>
+<p>Function to get all parameters of the client in JSON format.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1111,10 +1180,10 @@ You can make use of the mentioned features / events from other apps or you can d
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jsonParameters</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Empty string (only needed to simplify binding).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JSON string with all parameters.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1123,38 +1192,21 @@ You can make use of the mentioned features / events from other apps or you can d
 <h6 id="_sample_auto_generated_4">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">empty = CSK_Encoder.pageCalled()</code></pre>
+<pre class="CodeRay highlight"><code data-lang="lua">jsonParameters = CSK_Encoder.getParameters()</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.sendParameters"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">sendParameters()</span></h5>
+<h5 id="API:Function:CSK_Encoder.getStatusModuleActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">getStatusModuleActive()</span></h5>
 <div class="sect5">
 <h6 id="_short_description_6">Short description</h6>
 <div class="paragraph">
-<p>Send parameters to CSK_PersistentData module if possible to save them.</p>
+<p>Function to get status if module is active.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_5">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.sendParameters()</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setConveyorActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorActive()</span></h5>
-<div class="sect5">
-<h6 id="_short_description_7">Short description</h6>
-<div class="paragraph">
-<p>Function to set if conveyor features should be active.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_parameters">Parameters</h6>
+<h6 id="_return_values_4">Return values</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1181,20 +1233,125 @@ You can make use of the mentioned features / events from other apps or you can d
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_6">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_5">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorActive(status)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="lua">status = CSK_Encoder.getStatusModuleActive()</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setConveyorPrescaler"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorPrescaler()</span></h5>
+<h5 id="API:Function:CSK_Encoder.loadParameters"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">loadParameters()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_7">Short description</h6>
+<div class="paragraph">
+<p>Load parameters for this module from the CSK_PersistentData module if possible and use them.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Success to load parameters.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_6">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.loadParameters(success)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.pageCalled"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">pageCalled()</span></h5>
 <div class="sect5">
 <h6 id="_short_description_8">Short description</h6>
 <div class="paragraph">
-<p>Function to set the prescaler value for the increment input. If greater than 1 all increment values are scaled with this factor. This can be used if the incoming values need a higher resolution than the increment should have.</p>
+<p>Function to register "OnResume" of the module UI (only as helper function).</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_return_values_5">Return values</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty string (only needed to simplify binding).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_7">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">empty = CSK_Encoder.pageCalled()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.resetModule"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">resetModule()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_9">Short description</h6>
+<div class="paragraph">
+<p>Function to reset main configuration of module.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_8">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.resetModule()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.sendParameters"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">sendParameters()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_10">Short description</h6>
+<div class="paragraph">
+<p>Send parameters to CSK_PersistentData module if possible to save them.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1216,98 +1373,10 @@ You can make use of the mentioned features / events from other apps or you can d
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">prescaler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prescaler (Default is 1. Needs to be greater than zero.)</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_7">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorPrescaler(prescaler)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setConveyorResolution"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorResolution()</span></h5>
-<div class="sect5">
-<h6 id="_short_description_9">Short description</h6>
-<div class="paragraph">
-<p>Function to set the resolution value of the conveyor.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_parameters_3">Parameters</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">resolution</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Resolution in micrometer/increment.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_8">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorResolution(resolution)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setConveyorSource"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorSource()</span></h5>
-<div class="sect5">
-<h6 id="_short_description_10">Short description</h6>
-<div class="paragraph">
-<p>Function to set increment source for conveyor.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_parameters_4">Parameters</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">source</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Source</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">noDataSave</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Optional] Set to TRUE if the data should NOT be saved immediately after sending.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1316,21 +1385,21 @@ You can make use of the mentioned features / events from other apps or you can d
 <h6 id="_sample_auto_generated_9">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorSource(source)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.sendParameters(noDataSave)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setConveyorTimeoutActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorTimeoutActive()</span></h5>
+<h5 id="API:Function:CSK_Encoder.setConveyorActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorActive()</span></h5>
 <div class="sect5">
 <h6 id="_short_description_11">Short description</h6>
 <div class="paragraph">
-<p>Function to set status of conveyor timeout.</p>
+<p>Function to set if conveyor features should be active.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_5">Parameters</h6>
+<h6 id="_parameters_3">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1360,17 +1429,105 @@ You can make use of the mentioned features / events from other apps or you can d
 <h6 id="_sample_auto_generated_10">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorTimeoutActive(status)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorActive(status)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setConveyorTimeoutMode"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorTimeoutMode()</span></h5>
+<h5 id="API:Function:CSK_Encoder.setConveyorPrescaler"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorPrescaler()</span></h5>
 <div class="sect5">
 <h6 id="_short_description_12">Short description</h6>
 <div class="paragraph">
-<p>Function to set mode of conveyor timeout.</p>
+<p>Function to set the prescaler value for the increment input. If greater than 1 all increment values are scaled with this factor. This can be used if the incoming values need a higher resolution than the increment should have.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_4">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prescaler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prescaler (Default is 1. Needs to be greater than zero.)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_11">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorPrescaler(prescaler)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.setConveyorResolution"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorResolution()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_13">Short description</h6>
+<div class="paragraph">
+<p>Function to set the resolution value of the conveyor.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_5">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resolution in micrometer/increment.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_12">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorResolution(resolution)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.setConveyorSource"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorSource()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_14">Short description</h6>
+<div class="paragraph">
+<p>Function to set increment source for conveyor.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1392,100 +1549,10 @@ You can make use of the mentioned features / events from other apps or you can d
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">mode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ENUM<br>
-<a href="#API:Enum:CSK_Encoder.ConveyorTimeoutMode">CSK_Encoder.ConveyorTimeoutMode</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mode</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_11">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorTimeoutMode(mode)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setConveyorTimeoutValue"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorTimeoutValue()</span></h5>
-<div class="sect5">
-<h6 id="_short_description_13">Short description</h6>
-<div class="paragraph">
-<p>Function to set value for conveyor timeout.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_parameters_7">Parameters</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Value (depends on conveyor timeout mode to use TICKS or DISTANCE).</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_12">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorTimeoutValue(value)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setDecoderCountMode"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setDecoderCountMode()</span></h5>
-<div class="sect5">
-<h6 id="_short_description_14">Short description</h6>
-<div class="paragraph">
-<p>Function to set count mode of decoder.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_parameters_8">Parameters</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">mode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ENUM<br>
-<a href="#API:Enum:CSK_Encoder.DecoderCountMode">CSK_Encoder.DecoderCountMode</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Count mode.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Source</p></td>
 </tr>
 </tbody>
 </table>
@@ -1494,21 +1561,21 @@ You can make use of the mentioned features / events from other apps or you can d
 <h6 id="_sample_auto_generated_13">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setDecoderCountMode(mode)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorSource(source)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setDecoderHighResoltuion"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setDecoderHighResoltuion()</span></h5>
+<h5 id="API:Function:CSK_Encoder.setConveyorTimeoutActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorTimeoutActive()</span></h5>
 <div class="sect5">
 <h6 id="_short_description_15">Short description</h6>
 <div class="paragraph">
-<p>Function to set status of decoder high resolution mode.</p>
+<p>Function to set status of conveyor timeout.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_9">Parameters</h6>
+<h6 id="_parameters_7">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1538,17 +1605,106 @@ You can make use of the mentioned features / events from other apps or you can d
 <h6 id="_sample_auto_generated_14">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setDecoderHighResoltuion(status)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorTimeoutActive(status)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setDecoderInstance"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setDecoderInstance()</span></h5>
+<h5 id="API:Function:CSK_Encoder.setConveyorTimeoutMode"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorTimeoutMode()</span></h5>
 <div class="sect5">
 <h6 id="_short_description_16">Short description</h6>
 <div class="paragraph">
-<p>Function to set decoder instance.</p>
+<p>Function to set mode of conveyor timeout.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_8">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ENUM<br>
+<a href="#API:Enum:CSK_Encoder.ConveyorTimeoutMode">CSK_Encoder.ConveyorTimeoutMode</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mode</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_15">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorTimeoutMode(mode)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.setConveyorTimeoutValue"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setConveyorTimeoutValue()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_17">Short description</h6>
+<div class="paragraph">
+<p>Function to set value for conveyor timeout.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_9">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value (depends on conveyor timeout mode to use TICKS or DISTANCE).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_16">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setConveyorTimeoutValue(value)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.setDecoderCountMode"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setDecoderCountMode()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_18">Short description</h6>
+<div class="paragraph">
+<p>Function to set count mode of decoder.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1570,99 +1726,11 @@ You can make use of the mentioned features / events from other apps or you can d
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">instance</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Decoder instance.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_15">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setDecoderInstance(instance)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setDecoderNumberOfPhases"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setDecoderNumberOfPhases()</span></h5>
-<div class="sect5">
-<h6 id="_short_description_17">Short description</h6>
-<div class="paragraph">
-<p>Function to set number of decoder phases.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_parameters_11">Parameters</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">phases</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ENUM<br>
-<a href="#API:Enum:CSK_Encoder.DecoderPhases">CSK_Encoder.DecoderPhases</a></p></td>
+<a href="#API:Enum:CSK_Encoder.DecoderCountMode">CSK_Encoder.DecoderCountMode</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Phases</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_16">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setDecoderNumberOfPhases(phases)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setDecoderPrescaler"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setDecoderPrescaler()</span></h5>
-<div class="sect5">
-<h6 id="_short_description_18">Short description</h6>
-<div class="paragraph">
-<p>Function to set decoder prescaler.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_parameters_12">Parameters</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">prescaler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prescaler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Count mode.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1671,21 +1739,21 @@ You can make use of the mentioned features / events from other apps or you can d
 <h6 id="_sample_auto_generated_17">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setDecoderPrescaler(prescaler)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setDecoderCountMode(mode)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setEncoderFeatureActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setEncoderFeatureActive()</span></h5>
+<h5 id="API:Function:CSK_Encoder.setDecoderHighResoltuion"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setDecoderHighResoltuion()</span></h5>
 <div class="sect5">
 <h6 id="_short_description_19">Short description</h6>
 <div class="paragraph">
-<p>Function to set status if encoder features are active.</p>
+<p>Function to set status of decoder high resolution mode.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_13">Parameters</h6>
+<h6 id="_parameters_11">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1715,17 +1783,106 @@ You can make use of the mentioned features / events from other apps or you can d
 <h6 id="_sample_auto_generated_18">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setEncoderFeatureActive(status)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setDecoderHighResoltuion(status)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setEncoderInterface"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setEncoderInterface()</span></h5>
+<h5 id="API:Function:CSK_Encoder.setDecoderInstance"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setDecoderInstance()</span></h5>
 <div class="sect5">
 <h6 id="_short_description_20">Short description</h6>
 <div class="paragraph">
-<p>Function to set the interface the encoder is connected to.</p>
+<p>Function to set decoder instance.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_12">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decoder instance.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_19">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setDecoderInstance(instance)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.setDecoderNumberOfPhases"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setDecoderNumberOfPhases()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_21">Short description</h6>
+<div class="paragraph">
+<p>Function to set number of decoder phases.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_13">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">phases</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ENUM<br>
+<a href="#API:Enum:CSK_Encoder.DecoderPhases">CSK_Encoder.DecoderPhases</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Phases</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_20">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setDecoderNumberOfPhases(phases)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.setDecoderPrescaler"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setDecoderPrescaler()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_22">Short description</h6>
+<div class="paragraph">
+<p>Function to set decoder prescaler.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1747,77 +1904,33 @@ You can make use of the mentioned features / events from other apps or you can d
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">interface</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prescaler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prescaler</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_19">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_21">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setEncoderInterface(interface)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setDecoderPrescaler(prescaler)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setEncoderSource"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setEncoderSource()</span></h5>
+<h5 id="API:Function:CSK_Encoder.setEncoderFeatureActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setEncoderFeatureActive()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_21">Short description</h6>
+<h6 id="_short_description_23">Short description</h6>
 <div class="paragraph">
-<p>Function to set encoder increment source.</p>
+<p>Function to set status if encoder features are active.</p>
 </div>
 </div>
 <div class="sect5">
 <h6 id="_parameters_15">Parameters</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">source</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Source</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_20">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setEncoderSource(source)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setLoadOnReboot"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setLoadOnReboot()</span></h5>
-<div class="sect5">
-<h6 id="_short_description_22">Short description</h6>
-<div class="paragraph">
-<p>Configure if this module should load its saved parameters at app/device boot up.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_parameters_16">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1844,20 +1957,64 @@ You can make use of the mentioned features / events from other apps or you can d
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_21">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_22">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setLoadOnReboot(status)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setEncoderFeatureActive(status)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setParameterName"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setParameterName()</span></h5>
+<h5 id="API:Function:CSK_Encoder.setEncoderInterface"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setEncoderInterface()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_23">Short description</h6>
+<h6 id="_short_description_24">Short description</h6>
 <div class="paragraph">
-<p>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</p>
+<p>Function to set the interface the encoder is connected to.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_16">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interface</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_23">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setEncoderInterface(interface)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.setEncoderSource"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setEncoderSource()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_25">Short description</h6>
+<div class="paragraph">
+<p>Function to set encoder increment source.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1879,29 +2036,29 @@ You can make use of the mentioned features / events from other apps or you can d
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the parameter.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Source</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_22">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_24">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setParameterName(name)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setEncoderSource(source)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Function:CSK_Encoder.setTimerActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setTimerActive()</span></h5>
+<h5 id="API:Function:CSK_Encoder.setFlowConfigPriority"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setFlowConfigPriority()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_24">Short description</h6>
+<h6 id="_short_description_26">Short description</h6>
 <div class="paragraph">
-<p>Function to set status of timer to pull increment value periodically.</p>
+<p>Function to configure if FlowConfig should have priority for FlowConfig relevant configuration.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1932,7 +2089,139 @@ You can make use of the mentioned features / events from other apps or you can d
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_23">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_25">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setFlowConfigPriority(status)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.setLoadOnReboot"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setLoadOnReboot()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_27">Short description</h6>
+<div class="paragraph">
+<p>Configure if this module should load its saved parameters at app/device boot up.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_19">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_26">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setLoadOnReboot(status)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.setParameterName"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setParameterName()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_28">Short description</h6>
+<div class="paragraph">
+<p>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_20">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the parameter.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_27">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setParameterName(name)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_Encoder.setTimerActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setTimerActive()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_29">Short description</h6>
+<div class="paragraph">
+<p>Function to set status of timer to pull increment value periodically.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_21">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_28">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setTimerActive(status)</code></pre>
@@ -1943,13 +2232,13 @@ You can make use of the mentioned features / events from other apps or you can d
 <div class="sect4">
 <h5 id="API:Function:CSK_Encoder.setTimerCycle"><span class="breadcrumb">CSK_Encoder.</span><span class="api-function">setTimerCycle()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_25">Short description</h6>
+<h6 id="_short_description_30">Short description</h6>
 <div class="paragraph">
 <p>Function to set cycte time to pull increment data.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_19">Parameters</h6>
+<h6 id="_parameters_22">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1976,7 +2265,7 @@ You can make use of the mentioned features / events from other apps or you can d
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_24">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_29">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">CSK_Encoder.setTimerCycle(time)</code></pre>
@@ -1990,7 +2279,7 @@ You can make use of the mentioned features / events from other apps or you can d
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnConveyorTimeout"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnConveyorTimeout</span></h5>
 <div class="sect5">
-<h6 id="_short_description_26">Short description</h6>
+<h6 id="_short_description_31">Short description</h6>
 <div class="paragraph">
 <p>Notify if conveyor timeout expired.</p>
 </div>
@@ -2023,7 +2312,7 @@ You can make use of the mentioned features / events from other apps or you can d
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_25">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_30">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnConveyorTimeout</span>(timestamp)
@@ -2038,13 +2327,13 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnDataLoadedOnReboot"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnDataLoadedOnReboot</span></h5>
 <div class="sect5">
-<h6 id="_short_description_27">Short description</h6>
+<h6 id="_short_description_32">Short description</h6>
 <div class="paragraph">
 <p>Event to call if module tried to load parameters and should be ready.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_26">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_31">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnDataLoadedOnReboot</span>()
@@ -2059,7 +2348,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewConveyorInfo"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewConveyorInfo</span></h5>
 <div class="sect5">
-<h6 id="_short_description_28">Short description</h6>
+<h6 id="_short_description_33">Short description</h6>
 <div class="paragraph">
 <p>Notify current conveyor info data.</p>
 </div>
@@ -2092,7 +2381,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_27">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_32">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewConveyorInfo</span>(conveyorInfo)
@@ -2107,7 +2396,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewConveyorSourceList"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewConveyorSourceList</span></h5>
 <div class="sect5">
-<h6 id="_short_description_29">Short description</h6>
+<h6 id="_short_description_34">Short description</h6>
 <div class="paragraph">
 <p>Notify list of available conveyor sources.</p>
 </div>
@@ -2140,7 +2429,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_28">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_33">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewConveyorSourceList</span>(list)
@@ -2155,7 +2444,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewDecoderInstanceList"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewDecoderInstanceList</span></h5>
 <div class="sect5">
-<h6 id="_short_description_30">Short description</h6>
+<h6 id="_short_description_35">Short description</h6>
 <div class="paragraph">
 <p>Notify available decoder instances.</p>
 </div>
@@ -2188,7 +2477,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_29">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_34">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewDecoderInstanceList</span>(list)
@@ -2203,7 +2492,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewEncoderIncrementSourceList"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewEncoderIncrementSourceList</span></h5>
 <div class="sect5">
-<h6 id="_short_description_31">Short description</h6>
+<h6 id="_short_description_36">Short description</h6>
 <div class="paragraph">
 <p>Notify list of available encoder increment sources.</p>
 </div>
@@ -2236,7 +2525,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_30">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_35">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewEncoderIncrementSourceList</span>(list)
@@ -2251,7 +2540,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewEncoderInterfaceList"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewEncoderInterfaceList</span></h5>
 <div class="sect5">
-<h6 id="_short_description_32">Short description</h6>
+<h6 id="_short_description_37">Short description</h6>
 <div class="paragraph">
 <p>Notify list of available interfaces to connect the encoder.</p>
 </div>
@@ -2284,7 +2573,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_31">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_36">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewEncoderInterfaceList</span>(list)
@@ -2299,7 +2588,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewIncrementInfo"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewIncrementInfo</span></h5>
 <div class="sect5">
-<h6 id="_short_description_33">Short description</h6>
+<h6 id="_short_description_38">Short description</h6>
 <div class="paragraph">
 <p>Notify current increment info data.</p>
 </div>
@@ -2332,7 +2621,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_32">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_37">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewIncrementInfo</span>(incrementInfo)
@@ -2347,7 +2636,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewParameterName"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewParameterName</span></h5>
 <div class="sect5">
-<h6 id="_short_description_34">Short description</h6>
+<h6 id="_short_description_39">Short description</h6>
 <div class="paragraph">
 <p>Notify name of persistent data parameter.</p>
 </div>
@@ -2380,7 +2669,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_33">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_38">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewParameterName</span>(name)
@@ -2395,7 +2684,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusConveyorActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusConveyorActive</span></h5>
 <div class="sect5">
-<h6 id="_short_description_35">Short description</h6>
+<h6 id="_short_description_40">Short description</h6>
 <div class="paragraph">
 <p>Notify if conveyor features are active.</p>
 </div>
@@ -2428,7 +2717,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_34">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_39">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusConveyorActive</span>(status)
@@ -2443,7 +2732,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusConveyorPrescaler"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusConveyorPrescaler</span></h5>
 <div class="sect5">
-<h6 id="_short_description_36">Short description</h6>
+<h6 id="_short_description_41">Short description</h6>
 <div class="paragraph">
 <p>Notify prescaler of conveyor.</p>
 </div>
@@ -2476,7 +2765,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_35">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_40">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusConveyorPrescaler</span>(prescaler)
@@ -2491,7 +2780,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusConveyorResolution"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusConveyorResolution</span></h5>
 <div class="sect5">
-<h6 id="_short_description_37">Short description</h6>
+<h6 id="_short_description_42">Short description</h6>
 <div class="paragraph">
 <p>Notify resolution of conveyor.</p>
 </div>
@@ -2524,7 +2813,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_36">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_41">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusConveyorResolution</span>(resolution)
@@ -2539,7 +2828,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusConveyorSource"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusConveyorSource</span></h5>
 <div class="sect5">
-<h6 id="_short_description_38">Short description</h6>
+<h6 id="_short_description_43">Short description</h6>
 <div class="paragraph">
 <p>Notify source for conveyor.</p>
 </div>
@@ -2572,7 +2861,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_37">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_42">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusConveyorSource</span>(source)
@@ -2587,7 +2876,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusConveyorTimeoutActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusConveyorTimeoutActive</span></h5>
 <div class="sect5">
-<h6 id="_short_description_39">Short description</h6>
+<h6 id="_short_description_44">Short description</h6>
 <div class="paragraph">
 <p>Notify if conveyor timeout should be used.</p>
 </div>
@@ -2620,7 +2909,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_38">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_43">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusConveyorTimeoutActive</span>(status)
@@ -2635,7 +2924,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusConveyorTimeoutMode"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusConveyorTimeoutMode</span></h5>
 <div class="sect5">
-<h6 id="_short_description_40">Short description</h6>
+<h6 id="_short_description_45">Short description</h6>
 <div class="paragraph">
 <p>Notify mode of conveyor timeout.</p>
 </div>
@@ -2668,7 +2957,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_39">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_44">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusConveyorTimeoutMode</span>(mode)
@@ -2683,7 +2972,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusConveyorTimeoutValue"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusConveyorTimeoutValue</span></h5>
 <div class="sect5">
-<h6 id="_short_description_41">Short description</h6>
+<h6 id="_short_description_46">Short description</h6>
 <div class="paragraph">
 <p>Notify value of conveyor timeout .</p>
 </div>
@@ -2716,7 +3005,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_40">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_45">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusConveyorTimeoutValue</span>(timeoutValue)
@@ -2729,15 +3018,63 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </div>
 </div>
 <div class="sect4">
+<h5 id="API:Event:CSK_Encoder.OnNewStatusCSKStyle"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusCSKStyle</span></h5>
+<div class="sect5">
+<h6 id="_short_description_47">Short description</h6>
+<div class="paragraph">
+<p>Notify UI style to use for CSK modules.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_16">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">theme</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UI style</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_46">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusCSKStyle</span>(theme)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnNewStatusCSKStyle</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusCSKStyle</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusDecoderCountMode"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusDecoderCountMode</span></h5>
 <div class="sect5">
-<h6 id="_short_description_42">Short description</h6>
+<h6 id="_short_description_48">Short description</h6>
 <div class="paragraph">
 <p>Notify the current status of the decoder count mode.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_callback_arguments_16">Callback arguments</h6>
+<h6 id="_callback_arguments_17">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2764,7 +3101,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_41">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_47">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusDecoderCountMode</span>(mode)
@@ -2779,13 +3116,13 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusDecoderHighResolution"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusDecoderHighResolution</span></h5>
 <div class="sect5">
-<h6 id="_short_description_43">Short description</h6>
+<h6 id="_short_description_49">Short description</h6>
 <div class="paragraph">
 <p>Notify status of decoder high resolution.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_callback_arguments_17">Callback arguments</h6>
+<h6 id="_callback_arguments_18">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2812,7 +3149,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_42">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_48">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusDecoderHighResolution</span>(status)
@@ -2827,13 +3164,13 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusDecoderInstance"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusDecoderInstance</span></h5>
 <div class="sect5">
-<h6 id="_short_description_44">Short description</h6>
+<h6 id="_short_description_50">Short description</h6>
 <div class="paragraph">
 <p>Notify instance of decoder.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_callback_arguments_18">Callback arguments</h6>
+<h6 id="_callback_arguments_19">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2860,7 +3197,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_43">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_49">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusDecoderInstance</span>(instance)
@@ -2875,13 +3212,13 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusDecoderNumberOfPhases"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusDecoderNumberOfPhases</span></h5>
 <div class="sect5">
-<h6 id="_short_description_45">Short description</h6>
+<h6 id="_short_description_51">Short description</h6>
 <div class="paragraph">
 <p>Notify decoder number of phases.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_callback_arguments_19">Callback arguments</h6>
+<h6 id="_callback_arguments_20">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2908,7 +3245,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_44">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_50">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusDecoderNumberOfPhases</span>(decoderPhases)
@@ -2923,13 +3260,13 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusDecoderPrescaler"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusDecoderPrescaler</span></h5>
 <div class="sect5">
-<h6 id="_short_description_46">Short description</h6>
+<h6 id="_short_description_52">Short description</h6>
 <div class="paragraph">
 <p>Notify decoder prescaler.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_callback_arguments_20">Callback arguments</h6>
+<h6 id="_callback_arguments_21">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2956,7 +3293,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_45">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_51">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusDecoderPrescaler</span>(prescaler)
@@ -2971,13 +3308,13 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusEncoderFeatureActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusEncoderFeatureActive</span></h5>
 <div class="sect5">
-<h6 id="_short_description_47">Short description</h6>
+<h6 id="_short_description_53">Short description</h6>
 <div class="paragraph">
 <p>Notify if encoder features are active.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_callback_arguments_21">Callback arguments</h6>
+<h6 id="_callback_arguments_22">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -3004,7 +3341,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_46">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_52">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusEncoderFeatureActive</span>(status)
@@ -3019,13 +3356,13 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusEncoderInterface"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusEncoderInterface</span></h5>
 <div class="sect5">
-<h6 id="_short_description_48">Short description</h6>
+<h6 id="_short_description_54">Short description</h6>
 <div class="paragraph">
 <p>Notify selected interface to connect the encoder.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_callback_arguments_22">Callback arguments</h6>
+<h6 id="_callback_arguments_23">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -3052,7 +3389,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_47">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_53">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusEncoderInterface</span>(interface)
@@ -3067,13 +3404,13 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_Encoder.OnNewStatusEncoderSource"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusEncoderSource</span></h5>
 <div class="sect5">
-<h6 id="_short_description_49">Short description</h6>
+<h6 id="_short_description_55">Short description</h6>
 <div class="paragraph">
 <p>Notify selected source for encoder.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_callback_arguments_23">Callback arguments</h6>
+<h6 id="_callback_arguments_24">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -3100,7 +3437,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_48">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_54">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusEncoderSource</span>(source)
@@ -3113,59 +3450,11 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_Encoder.OnNewStatusLoadParameterOnReboot"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusLoadParameterOnReboot</span></h5>
+<h5 id="API:Event:CSK_Encoder.OnNewStatusFlowConfigPriority"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusFlowConfigPriority</span></h5>
 <div class="sect5">
-<h6 id="_short_description_50">Short description</h6>
+<h6 id="_short_description_56">Short description</h6>
 <div class="paragraph">
-<p>Notify status if parameters should be loaded on app/device boot up.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_callback_arguments_24">Callback arguments</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_49">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusLoadParameterOnReboot</span>(status)
-  <span class="comment">-- Do something</span>
-<span class="keyword">end</span>
-
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnNewStatusLoadParameterOnReboot</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusLoadParameterOnReboot</span><span class="delimiter">&quot;</span></span>)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Event:CSK_Encoder.OnNewStatusModuleIsActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusModuleIsActive</span></h5>
-<div class="sect5">
-<h6 id="_short_description_51">Short description</h6>
-<div class="paragraph">
-<p>Notify if module can be used on device.</p>
+<p>Notify if FlowConfig should have priority for FlowConfig relevant configurations.</p>
 </div>
 </div>
 <div class="sect5">
@@ -3196,24 +3485,24 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_50">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_55">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusModuleIsActive</span>(status)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusFlowConfigPriority</span>(status)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnNewStatusModuleIsActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusModuleIsActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnNewStatusFlowConfigPriority</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusFlowConfigPriority</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_Encoder.OnNewStatusTimerActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusTimerActive</span></h5>
+<h5 id="API:Event:CSK_Encoder.OnNewStatusLoadParameterOnReboot"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusLoadParameterOnReboot</span></h5>
 <div class="sect5">
-<h6 id="_short_description_52">Short description</h6>
+<h6 id="_short_description_57">Short description</h6>
 <div class="paragraph">
-<p>Notify if timer is active to periodically pull increment.</p>
+<p>Notify status if parameters should be loaded on app/device boot up.</p>
 </div>
 </div>
 <div class="sect5">
@@ -3244,76 +3533,28 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_51">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_56">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusTimerActive</span>(status)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusLoadParameterOnReboot</span>(status)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnNewStatusTimerActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusTimerActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnNewStatusLoadParameterOnReboot</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusLoadParameterOnReboot</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_Encoder.OnNewStatusTimerCycle"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusTimerCycle</span></h5>
+<h5 id="API:Event:CSK_Encoder.OnNewStatusModuleIsActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusModuleIsActive</span></h5>
 <div class="sect5">
-<h6 id="_short_description_53">Short description</h6>
+<h6 id="_short_description_58">Short description</h6>
 <div class="paragraph">
-<p>Notify cycle time of increment timer.</p>
+<p>Notify if module can be used on device.</p>
 </div>
 </div>
 <div class="sect5">
 <h6 id="_callback_arguments_27">Callback arguments</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cycleTime</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time of cycle.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_52">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusTimerCycle</span>(cycleTime)
-  <span class="comment">-- Do something</span>
-<span class="keyword">end</span>
-
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnNewStatusTimerCycle</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusTimerCycle</span><span class="delimiter">&quot;</span></span>)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Event:CSK_Encoder.OnPersistentDataModuleAvailable"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnPersistentDataModuleAvailable</span></h5>
-<div class="sect5">
-<h6 id="_short_description_54">Short description</h6>
-<div class="paragraph">
-<p>Notify status if features of CSK_PersistentData module are available.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_callback_arguments_28">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -3340,24 +3581,72 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_53">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_57">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnPersistentDataModuleAvailable</span>(status)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusModuleIsActive</span>(status)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnPersistentDataModuleAvailable</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnPersistentDataModuleAvailable</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnNewStatusModuleIsActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusModuleIsActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_Encoder.OnUserLevelAdminActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnUserLevelAdminActive</span></h5>
+<h5 id="API:Event:CSK_Encoder.OnNewStatusModuleVersion"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusModuleVersion</span></h5>
 <div class="sect5">
-<h6 id="_short_description_55">Short description</h6>
+<h6 id="_short_description_59">Short description</h6>
 <div class="paragraph">
-<p>Status of Admin userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+<p>Notify version of module.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_28">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_58">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusModuleVersion</span>(version)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnNewStatusModuleVersion</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusModuleVersion</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_Encoder.OnNewStatusTimerActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusTimerActive</span></h5>
+<div class="sect5">
+<h6 id="_short_description_60">Short description</h6>
+<div class="paragraph">
+<p>Notify if timer is active to periodically pull increment.</p>
 </div>
 </div>
 <div class="sect5">
@@ -3388,24 +3677,24 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_54">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_59">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelAdminActive</span>(status)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusTimerActive</span>(status)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnUserLevelAdminActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelAdminActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnNewStatusTimerActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusTimerActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_Encoder.OnUserLevelMaintenanceActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnUserLevelMaintenanceActive</span></h5>
+<h5 id="API:Event:CSK_Encoder.OnNewStatusTimerCycle"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnNewStatusTimerCycle</span></h5>
 <div class="sect5">
-<h6 id="_short_description_56">Short description</h6>
+<h6 id="_short_description_61">Short description</h6>
 <div class="paragraph">
-<p>Status of Maintenance userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+<p>Notify cycle time of increment timer.</p>
 </div>
 </div>
 <div class="sect5">
@@ -3427,33 +3716,33 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cycleTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time of cycle.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_55">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_60">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelMaintenanceActive</span>(status)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusTimerCycle</span>(cycleTime)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnUserLevelMaintenanceActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelMaintenanceActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnNewStatusTimerCycle</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusTimerCycle</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_Encoder.OnUserLevelOperatorActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnUserLevelOperatorActive</span></h5>
+<h5 id="API:Event:CSK_Encoder.OnPersistentDataModuleAvailable"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnPersistentDataModuleAvailable</span></h5>
 <div class="sect5">
-<h6 id="_short_description_57">Short description</h6>
+<h6 id="_short_description_62">Short description</h6>
 <div class="paragraph">
-<p>Status of Operator userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+<p>Notify status if features of CSK_PersistentData module are available.</p>
 </div>
 </div>
 <div class="sect5">
@@ -3484,24 +3773,24 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_56">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_61">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelOperatorActive</span>(status)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnPersistentDataModuleAvailable</span>(status)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnUserLevelOperatorActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelOperatorActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnPersistentDataModuleAvailable</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnPersistentDataModuleAvailable</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_Encoder.OnUserLevelServiceActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnUserLevelServiceActive</span></h5>
+<h5 id="API:Event:CSK_Encoder.OnUserLevelAdminActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnUserLevelAdminActive</span></h5>
 <div class="sect5">
-<h6 id="_short_description_58">Short description</h6>
+<h6 id="_short_description_63">Short description</h6>
 <div class="paragraph">
-<p>Status of Service userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+<p>Status of Admin userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
 </div>
 </div>
 <div class="sect5">
@@ -3532,7 +3821,151 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_57">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_62">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelAdminActive</span>(status)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnUserLevelAdminActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelAdminActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_Encoder.OnUserLevelMaintenanceActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnUserLevelMaintenanceActive</span></h5>
+<div class="sect5">
+<h6 id="_short_description_64">Short description</h6>
+<div class="paragraph">
+<p>Status of Maintenance userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_33">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_63">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelMaintenanceActive</span>(status)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnUserLevelMaintenanceActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelMaintenanceActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_Encoder.OnUserLevelOperatorActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnUserLevelOperatorActive</span></h5>
+<div class="sect5">
+<h6 id="_short_description_65">Short description</h6>
+<div class="paragraph">
+<p>Status of Operator userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_34">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_64">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelOperatorActive</span>(status)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_Encoder.OnUserLevelOperatorActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelOperatorActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_Encoder.OnUserLevelServiceActive"><span class="breadcrumb">CSK_Encoder.</span><span class="api-event">OnUserLevelServiceActive</span></h5>
+<div class="sect5">
+<h6 id="_short_description_66">Short description</h6>
+<div class="paragraph">
+<p>Status of Service userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_35">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_65">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelServiceActive</span>(status)
@@ -3549,7 +3982,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect2">
 <h3 id="API:Crown:CSK_Module_Encoder"><span class="api-crown">CSK_Module_Encoder</span></h3>
 <div class="sect3">
-<h4 id="_short_description_59">Short description</h4>
+<h4 id="_short_description_67">Short description</h4>
 <div class="paragraph">
 <p>This is an automatically generated CROWN (description not necessary).</p>
 </div>
@@ -3557,6 +3990,275 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect3">
 <h4 id="_overview_2">Overview</h4>
 
+</div>
+</div>
+<div class="sect2">
+<h3 id="API:Crown:Encoder_FC"><span class="api-crown">Encoder_FC</span></h3>
+<div class="sect3">
+<h4 id="_short_description_68">Short description</h4>
+<div class="paragraph">
+<p>Crown to provide CSK_FlowConfig relevant features.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_overview_3">Overview</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="API:Crown:Encoder_FC.OnNewData"><span class="api-crown">Encoder_FC.OnNewData</span></h3>
+<div class="sect3">
+<h4 id="_short_description_69">Short description</h4>
+<div class="paragraph">
+<p>Provide encoder / conveyor data.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_overview_4">Overview</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#API:Function:Encoder_FC.OnNewData.create">create()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:Encoder_FC.OnNewData.register">register()</a></p>
+</li>
+<li>
+<p><a href="#API:Event:Encoder_FC.OnNewData.OnNewData">OnNewData</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_functions_2">Functions</h4>
+<div class="sect4">
+<h5 id="API:Function:Encoder_FC.OnNewData.create"><span class="breadcrumb">Encoder_FC.OnNewData.</span><span class="api-function">create()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_70">Short description</h6>
+<div class="paragraph">
+<p>Internally used CSK_FlowConfig create function.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_23">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ENUM<br>
+<a href="#API:Enum:Encoder_FC.DataMode">Encoder_FC.DataMode</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mode of providing data.
+ENCODER: Provide pulled encoder data
+CONVEYOR: Provide pulled conveyor data
+TIMEOUT: Provide trigger of conveyor timeout
+HANDLE_ENCODER: Provide handle of encoder.
+HANDLE_TIMEOUT: Provide handle of conveyor timeout.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_return_values_6">Return values</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HANDLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handle to internally used FlowConfig instance.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_66">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">handle = Encoder_FC.OnNewData.create(mode)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:Encoder_FC.OnNewData.register"><span class="breadcrumb">Encoder_FC.OnNewData.</span><span class="api-function">register()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_71">Short description</h6>
+<div class="paragraph">
+<p>Internally used CSK_FlowConfig register function.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_24">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HANDLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handle to internally used FlowConfig instance.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eventname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Internal parameter (not used).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">callback</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Internally used callback function.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_return_values_7">Return values</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Success of register process.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_67">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">success = Encoder_FC.OnNewData.register(handle, eventname, callback)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_events_2">Events</h4>
+<div class="sect4">
+<h5 id="API:Event:Encoder_FC.OnNewData.OnNewData"><span class="breadcrumb">Encoder_FC.OnNewData.</span><span class="api-event">OnNewData</span></h5>
+<div class="sect5">
+<h6 id="_short_description_72">Short description</h6>
+<div class="paragraph">
+<p>Provide encoder / conveyor data.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_36">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HANDLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handle to internally used FlowConfig instance.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OnNewData</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'CSK_Encoder.OnNewIncrementInfo' or 'CSK_Encoder.OnNewConveyorInfo' or ''CSK_Encoder.OnConveyorTimeout' or 'HANDLE_ENC' or 'HANDLE_TIM'
+Parameter:
+MODE = ENCODER
+1: Increment Info (STRING)
+MODE = CONVEYOR
+1: Conveyor Info (STRING)
+MODE = TIMEOUT
+1: Timestamp of ConveyorTimeout (INT)
+MODE = HANDLE_ENCODER
+1: Handle (Encoder)
+MODE = HANDLE_TIMEOUT
+1: Handle (Conveyor.Timeout)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_68">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewData</span>(handle, OnNewData)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">Encoder_FC.OnNewData.OnNewData</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewData</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -3578,6 +4280,16 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </li>
 <li>
 <p><a href="#API:Enum:CSK_Encoder.DecoderPhases">CSK_Encoder.DecoderPhases</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">E</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#API:Enum:Encoder_FC.DataMode">Encoder_FC.DataMode</a></p>
 </li>
 </ul>
 </div>
@@ -3698,13 +4410,61 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </tbody>
 </table>
 </div>
+<div class="sect2">
+<h3 id="API:Enum:Encoder_FC.DataMode"><span class="api-enum">Encoder_FC.DataMode</span></h3>
+<div class="paragraph">
+<p>Mode to provide encoder / conveyor data.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Items</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>ENCODER</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ENCODER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide data of encoder.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>CONVEYOR</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONVEYOR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide data of conveyor.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>TIMEOUT</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMEOUT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide trigger of conveyor timeout.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>HANDLE_ENCODER</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HANDLE_ENCODER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide handle of encoder.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>HANDLE_TIMEOUT</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HANDLE_TIMEOUT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide handle of Conveyor.Timeout.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 0.2.0<br>
-Last updated 2023-06-19 14:35:57 +0200
+Version 1.0.0<br>
+Last updated 2025-03-13 16:12:02 +0100
 </div>
 </div>
 <script type="text/javascript">

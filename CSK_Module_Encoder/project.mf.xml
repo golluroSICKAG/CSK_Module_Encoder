@@ -22,7 +22,7 @@ Activate encoder feature (setEncoderFeatureActive). +
 **2) Pulling encoder / conveyor data periodically** +
 It is possible to configure a timer to periodically pull encoder / conveyor data. +
 Set the cycle time via setTimerCycle and activate it via setTimerActive. +
-If activated it will pull now the encoder / conveyor data and provide it via the OnNewEncoderInfo / OnNewConveyorInfo events. +
+If activated it will pull now the encoder / conveyor data and provide it via the OnNewIncrementInfo / OnNewConveyorInfo events. +
 {empty} +
 ** 3) Use ConveyorTimeout** +
 It is possible to configure a ConveyorTimeout to receive an event if the conveyor moved for a defined amount of ticks or a distance. +
@@ -181,15 +181,21 @@ You can make use of the mentioned features / events from other apps or you can d
                     <desc>Notify if module can be used on device.</desc>
                     <param desc="Status" multiplicity="1" name="status" type="bool"/>
                 </event>
+                <event name="OnNewStatusCSKStyle">
+                    <desc>Notify UI style to use for CSK modules.</desc>
+                    <param desc="UI style" multiplicity="1" name="theme" type="string"/>
+                </event>
+                <event name="OnNewStatusModuleVersion">
+                    <desc>Notify version of module.</desc>
+                    <param desc="Version" multiplicity="1" name="version" type="string"/>
+                </event>
+                <event name="OnNewStatusFlowConfigPriority">
+                    <desc>Notify if FlowConfig should have priority for FlowConfig relevant configurations.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
                 <function name="setParameterName">
                     <desc>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</desc>
                     <param desc="Name of the parameter." multiplicity="1" name="name" type="string"/>
-                </function>
-                <function name="sendParameters">
-                    <desc>Send parameters to CSK_PersistentData module if possible to save them.</desc>
-                </function>
-                <function name="loadParameters">
-                    <desc>Load parameters for this module from the CSK_PersistentData module if possible and use them.</desc>
                 </function>
                 <function name="setLoadOnReboot">
                     <desc>Configure if this module should load its saved parameters at app/device boot up.</desc>
@@ -275,133 +281,77 @@ You can make use of the mentioned features / events from other apps or you can d
                     <desc>Function to set the prescaler value for the increment input. If greater than 1 all increment values are scaled with this factor. This can be used if the incoming values need a higher resolution than the increment should have.</desc>
                     <param desc="Prescaler (Default is 1. Needs to be greater than zero.)" multiplicity="1" name="prescaler" type="int"/>
                 </function>
+                <function name="loadParameters">
+                    <desc>Load parameters for this module from the CSK_PersistentData module if possible and use them.</desc>
+                    <param desc="Success to load parameters." multiplicity="1" name="success" type="bool"/>
+                </function>
+                <function name="sendParameters">
+                    <desc>Send parameters to CSK_PersistentData module if possible to save them.</desc>
+                    <param desc="[Optional] Set to TRUE if the data should NOT be saved immediately after sending." multiplicity="?" name="noDataSave" type="bool"/>
+                </function>
+                <function name="getStatusModuleActive">
+                    <desc>Function to get status if module is active.</desc>
+                    <return desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="clearFlowConfigRelevantConfiguration">
+                    <desc>Function to clear FlowConfig relevant configurations.</desc>
+                </function>
+                <function name="getParameters">
+                    <trait>released</trait>
+                    <desc>Function to get all parameters of the client in JSON format.</desc>
+                    <return desc="JSON string with all parameters." multiplicity="1" name="jsonParameters" type="string"/>
+                </function>
+                <function name="resetModule">
+                    <desc>Function to reset main configuration of module.</desc>
+                </function>
+                <function name="setFlowConfigPriority">
+                    <desc>Function to configure if FlowConfig should have priority for FlowConfig relevant configuration.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
             </serves>
         </crown>
-        <crown name="Engine">
-            <desc>no description yet</desc>
-            <uses>
-                <event name="OnStarted"/>
-                <function name="getEnumValues"/>
-            </uses>
-        </crown>
-        <crown name="Timer">
-            <desc>no description yet</desc>
-            <uses>
-                <event name="OnExpired"/>
-                <function name="create"/>
-                <function name="setPeriodic"/>
-                <function name="start"/>
-                <function name="register"/>
-                <function name="setExpirationTime"/>
-            </uses>
-        </crown>
-        <crown name="Conveyor">
-            <desc>no description yet</desc>
-            <uses>
-                <function name="getSpeed"/>
-                <function name="setPrescaler"/>
-                <function name="setSource"/>
-                <function name="getCurrentIncrement"/>
-                <function name="getTransportMode"/>
-                <function name="setResolution"/>
-            </uses>
-            <crown name="Timeout">
-                <desc>no description yet</desc>
-                <uses>
-                    <event name="OnExpired"/>
-                    <function name="create"/>
-                    <function name="register"/>
-                </uses>
+        <crown name="Encoder_FC">
+            <trait>released</trait>
+            <desc>Crown to provide CSK_FlowConfig relevant features.</desc>
+            <enum name="DataMode" trait="released" type="string">
+                <desc>Mode to provide encoder / conveyor data.</desc>
+                <item desc="Provide data of encoder." name="ENCODER">ENCODER</item>
+                <item desc="Provide data of conveyor." name="CONVEYOR">CONVEYOR</item>
+                <item desc="Provide trigger of conveyor timeout." name="TIMEOUT">TIMEOUT</item>
+                <item desc="Provide handle of encoder." name="HANDLE_ENCODER">HANDLE_ENCODER</item>
+                <item desc="Provide handle of Conveyor.Timeout." name="HANDLE_TIMEOUT">HANDLE_TIMEOUT</item>
+            </enum>
+            <serves/>
+            <crown name="OnNewData">
+                <trait>released</trait>
+                <include>data-flow</include>
+                <desc>Provide encoder / conveyor data.</desc>
+                <serves>
+                    <event name="OnNewData">
+                        <include>data-flow</include>
+                        <desc>Provide encoder / conveyor data.</desc>
+                        <param desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                        <param desc="'CSK_Encoder.OnNewIncrementInfo' or 'CSK_Encoder.OnNewConveyorInfo' or ''CSK_Encoder.OnConveyorTimeout' or 'HANDLE_ENC' or 'HANDLE_TIM'&#10;&#10;Parameter:&#10;&#10;MODE = ENCODER&#10;1: Increment Info (STRING)&#10;&#10;MODE = CONVEYOR&#10;1: Conveyor Info (STRING)&#10;&#10;MODE = TIMEOUT&#10;1: Timestamp of ConveyorTimeout (INT)&#10;&#10;MODE = HANDLE_ENCODER&#10;1: Handle (Encoder)&#10;&#10;MODE = HANDLE_TIMEOUT&#10;1: Handle (Conveyor.Timeout)" multiplicity="1" name="OnNewData" type="string"/>
+                    </event>
+                    <function name="create">
+                        <trait>released</trait>
+                        <desc>Internally used CSK_FlowConfig create function.</desc>
+                        <param desc="Mode of providing data.&#10;&#10;ENCODER: Provide pulled encoder data&#10;&#10;CONVEYOR: Provide pulled conveyor data&#10;&#10;TIMEOUT: Provide trigger of conveyor timeout&#10;&#10;HANDLE_ENCODER: Provide handle of encoder.&#10;&#10;HANDLE_TIMEOUT: Provide handle of conveyor timeout." multiplicity="1" name="mode" ref="Encoder_FC.DataMode" type="enum"/>
+                        <return desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                    </function>
+                    <function name="register">
+                        <trait>released</trait>
+                        <desc>Internally used CSK_FlowConfig register function.</desc>
+                        <param desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                        <param desc="Internal parameter (not used)." multiplicity="1" name="eventname" type="string"/>
+                        <param desc="Internally used callback function." multiplicity="1" name="callback" type="string"/>
+                        <return desc="Success of register process." multiplicity="1" name="success" type="bool"/>
+                    </function>
+                </serves>
             </crown>
-        </crown>
-        <crown name="Log">
-            <desc>no description yet</desc>
-            <uses/>
-            <crown name="Handler">
-                <desc>no description yet</desc>
-                <uses>
-                    <function name="create"/>
-                </uses>
-            </crown>
-            <crown name="SharedLogger">
-                <desc>no description yet</desc>
-                <uses>
-                    <function name="create"/>
-                </uses>
-            </crown>
-        </crown>
-        <crown name="Container">
-            <desc>no description yet</desc>
-            <uses>
-                <function name="get"/>
-                <function name="create"/>
-                <function name="list"/>
-                <function name="add"/>
-            </uses>
-        </crown>
-        <crown name="Encoder">
-            <desc>no description yet</desc>
-            <uses>
-                <function name="create"/>
-            </uses>
-        </crown>
-        <crown name="DateTime">
-            <desc>no description yet</desc>
-            <uses>
-                <function name="getTimestamp"/>
-            </uses>
-        </crown>
-        <crown name="string">
-            <desc>no description yet</desc>
-            <uses>
-                <function name="sub"/>
-                <function name="format"/>
-                <function name="char"/>
-            </uses>
-        </crown>
-        <crown name="table">
-            <desc>no description yet</desc>
-            <uses>
-                <function name="insert"/>
-                <function name="sort"/>
-                <function name="concat"/>
-            </uses>
-        </crown>
-        <crown name="Script">
-            <desc>no description yet</desc>
-            <uses>
-                <function name="register"/>
-                <function name="serveFunction"/>
-                <function name="releaseObject"/>
-                <function name="notifyEvent"/>
-                <function name="serveEvent"/>
-            </uses>
-        </crown>
-        <crown name="Object">
-            <desc>no description yet</desc>
-            <uses>
-                <function name="getType"/>
-            </uses>
-        </crown>
-        <crown name="Connector">
-            <desc>no description yet</desc>
-            <uses/>
-            <crown name="Power">
-                <desc>no description yet</desc>
-                <uses>
-                    <function name="enable"/>
-                    <function name="create"/>
-                </uses>
-            </crown>
-        </crown>
-        <crown name="Flow">
-            <desc>no description yet</desc>
-            <uses>
-                <function name="create"/>
-            </uses>
         </crown>
         <meta key="author">SICK AG</meta>
-        <meta key="version">0.2.0</meta>
+        <meta key="version">1.0.0</meta>
         <meta key="priority">low</meta>
         <meta key="copy-protected">false</meta>
         <meta key="read-protected">false</meta>

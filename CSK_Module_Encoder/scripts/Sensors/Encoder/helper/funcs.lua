@@ -10,6 +10,8 @@
 local funcs = {}
 -- Providing standard JSON functions
 funcs.json = require('Sensors/Encoder/helper/Json')
+-- Function to check if all relevant parameters exist
+funcs.checkParameters = require('Sensors/Encoder/helper/checkParameters')
 
 --**************************************************************************
 --********************** End Global Scope **********************************

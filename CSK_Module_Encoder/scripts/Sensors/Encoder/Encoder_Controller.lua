@@ -20,6 +20,10 @@ local encoder_Model
 
 -- ************************ UI Events Start ********************************
 
+Script.serveEvent('CSK_Encoder.OnNewStatusModuleVersion', 'Encoder_OnNewStatusModuleVersion')
+Script.serveEvent('CSK_Encoder.OnNewStatusCSKStyle', 'Encoder_OnNewStatusCSKStyle')
+Script.serveEvent('CSK_Encoder.OnNewStatusModuleIsActive', 'Encoder_OnNewStatusModuleIsActive')
+
 Script.serveEvent('CSK_Encoder.OnNewIncrementInfo', 'Encoder_OnNewIncrementInfo')
 Script.serveEvent('CSK_Encoder.OnNewConveyorInfo', 'Encoder_OnNewConveyorInfo')
 Script.serveEvent('CSK_Encoder.OnConveyorTimeout', 'Encoder_OnConveyorTimeout')
@@ -52,7 +56,7 @@ Script.serveEvent('CSK_Encoder.OnNewStatusConveyorTimeoutActive', 'Encoder_OnNew
 Script.serveEvent('CSK_Encoder.OnNewStatusConveyorTimeoutMode', 'Encoder_OnNewStatusConveyorTimeoutMode')
 Script.serveEvent('CSK_Encoder.OnNewStatusConveyorTimeoutValue', 'Encoder_OnNewStatusConveyorTimeoutValue')
 
-Script.serveEvent('CSK_Encoder.OnNewStatusModuleIsActive', 'Encoder_OnNewStatusModuleIsActive')
+Script.serveEvent('CSK_Encoder.OnNewStatusFlowConfigPriority', 'Encoder_OnNewStatusFlowConfigPriority')
 Script.serveEvent("CSK_Encoder.OnNewStatusLoadParameterOnReboot", "Encoder_OnNewStatusLoadParameterOnReboot")
 Script.serveEvent("CSK_Encoder.OnPersistentDataModuleAvailable", "Encoder_OnPersistentDataModuleAvailable")
 Script.serveEvent("CSK_Encoder.OnNewParameterName", "Encoder_OnNewParameterName")
@@ -130,9 +134,11 @@ local function handleOnExpiredTmrEncoder()
 
   updateUserLevel()
 
-  Script.notifyEvent("Encoder_OnNewStatusModuleIsActive", encoder_Model.moduleActive)
+  Script.notifyEvent("Encoder_OnNewStatusModuleVersion", 'v' .. encoder_Model.version)
+  Script.notifyEvent("Encoder_OnNewStatusCSKStyle", encoder_Model.styleForUI)
+  Script.notifyEvent("Encoder_OnNewStatusModuleIsActive", _G.availableAPIs.default and _G.availableAPIs.specific)
 
-  if encoder_Model.moduleActive then
+  if _G.availableAPIs.default and _G.availableAPIs.specific then
 
     Script.notifyEvent("Encoder_OnNewStatusEncoderFeatureActive", encoder_Model.parameters.encoderActive)
 
@@ -162,6 +168,7 @@ local function handleOnExpiredTmrEncoder()
     Script.notifyEvent("Encoder_OnNewStatusConveyorTimeoutMode", encoder_Model.parameters.conveyorTimeoutMode)
     Script.notifyEvent("Encoder_OnNewStatusConveyorTimeoutValue", encoder_Model.parameters.conveyorTimeoutValue)
 
+    Script.notifyEvent("Encoder_OnNewStatusFlowConfigPriority", encoder_Model.parameters.flowConfigPriority)
     Script.notifyEvent("Encoder_OnNewStatusLoadParameterOnReboot", encoder_Model.parameterLoadOnReboot)
     Script.notifyEvent("Encoder_OnPersistentDataModuleAvailable", encoder_Model.persistentModuleAvailable)
     Script.notifyEvent("Encoder_OnNewParameterName", encoder_Model.parametersName)
@@ -172,7 +179,9 @@ Timer.register(tmrEncoder, "OnExpired", handleOnExpiredTmrEncoder)
 -- ********************* UI Setting / Submit Functions Start ********************
 
 local function pageCalled()
-  updateUserLevel() -- try to hide user specific content asap
+  if _G.availableAPIs.default and _G.availableAPIs.specific then
+    updateUserLevel() -- try to hide user specific content asap
+  end
   tmrEncoder:start()
   return ''
 end
@@ -188,7 +197,7 @@ end
 Script.serveFunction('CSK_Encoder.getEncoderHandle', getEncoderHandle)
 
 local function setEncoderFeatureActive(status)
-  _G.logger:info(nameOfModule .. ": Set encoder features status to " .. tostring(status))
+  _G.logger:fine(nameOfModule .. ": Set encoder features status to " .. tostring(status))
   encoder_Model.parameters.encoderActive = status
   if status == false then
     -- Check if digital input port needs to be freed for CSK_DigitalIOManager module
@@ -200,7 +209,7 @@ end
 Script.serveFunction('CSK_Encoder.setEncoderFeatureActive', setEncoderFeatureActive)
 
 local function setEncoderInterface(interface)
-  _G.logger:info(nameOfModule .. ": Set encoder interface to " .. interface)
+  _G.logger:fine(nameOfModule .. ": Set encoder interface to " .. interface)
   encoder_Model.freeDigitalInPort()
   encoder_Model.parameters.encoderInterface = interface
   encoder_Model.setupEncoder()
@@ -209,7 +218,7 @@ end
 Script.serveFunction('CSK_Encoder.setEncoderInterface', setEncoderInterface)
 
 local function setEncoderSource(source)
-  _G.logger:info(nameOfModule .. ": Set encoder source to " .. source)
+  _G.logger:fine(nameOfModule .. ": Set encoder source to " .. source)
   encoder_Model.parameters.encoderSource = source
   encoder_Model.setupEncoder()
   handleOnExpiredTmrEncoder()
@@ -217,7 +226,7 @@ end
 Script.serveFunction('CSK_Encoder.setEncoderSource', setEncoderSource)
 
 local function setDecoderInstance(instance)
-  _G.logger:info(nameOfModule .. ": Set decoder instance to " .. instance)
+  _G.logger:fine(nameOfModule .. ": Set decoder instance to " .. instance)
   encoder_Model.parameters.decoderInstance = instance
   encoder_Model.setupEncoder()
   handleOnExpiredTmrEncoder()
@@ -225,7 +234,7 @@ end
 Script.serveFunction('CSK_Encoder.setDecoderInstance', setDecoderInstance)
 
 local function setDecoderHighResoltuion(status)
-  _G.logger:info(nameOfModule .. ": Set decoder high resolution status to " .. tostring(status))
+  _G.logger:fine(nameOfModule .. ": Set decoder high resolution status to " .. tostring(status))
   encoder_Model.parameters.decoderHighResolution = status
   encoder_Model.setupEncoder()
   handleOnExpiredTmrEncoder()
@@ -233,7 +242,7 @@ end
 Script.serveFunction('CSK_Encoder.setDecoderHighResoltuion', setDecoderHighResoltuion)
 
 local function setDecoderCountMode(mode)
-  _G.logger:info(nameOfModule .. ": Set decoder count mode to " .. mode)
+  _G.logger:fine(nameOfModule .. ": Set decoder count mode to " .. mode)
   encoder_Model.parameters.decoderCountMode = mode
   encoder_Model.setupEncoder()
   handleOnExpiredTmrEncoder()
@@ -241,7 +250,7 @@ end
 Script.serveFunction('CSK_Encoder.setDecoderCountMode', setDecoderCountMode)
 
 local function setDecoderPrescaler(prescaler)
-  _G.logger:info(nameOfModule .. ": Set decoder prescaler to " .. tostring(prescaler))
+  _G.logger:fine(nameOfModule .. ": Set decoder prescaler to " .. tostring(prescaler))
   encoder_Model.parameters.decoderPrescaler = prescaler
   encoder_Model.setupEncoder()
   handleOnExpiredTmrEncoder()
@@ -249,7 +258,7 @@ end
 Script.serveFunction('CSK_Encoder.setDecoderPrescaler', setDecoderPrescaler)
 
 local function setDecoderNumberOfPhases(phases)
-  _G.logger:info(nameOfModule .. ": Set decoder numberOfPhases to " .. phases)
+  _G.logger:fine(nameOfModule .. ": Set decoder numberOfPhases to " .. phases)
   encoder_Model.parameters.decoderNumberOfPhases = phases
   encoder_Model.setupEncoder()
   handleOnExpiredTmrEncoder()
@@ -257,7 +266,7 @@ end
 Script.serveFunction('CSK_Encoder.setDecoderNumberOfPhases', setDecoderNumberOfPhases)
 
 local function setTimerActive(status)
-  _G.logger:info(nameOfModule .. ": Set cycle timer status to " .. tostring(status))
+  _G.logger:fine(nameOfModule .. ": Set cycle timer status to " .. tostring(status))
   encoder_Model.parameters.timerActive = status
   encoder_Model.setupTimer()
   handleOnExpiredTmrEncoder()
@@ -265,7 +274,7 @@ end
 Script.serveFunction('CSK_Encoder.setTimerActive', setTimerActive)
 
 local function setTimerCycle(time)
-  _G.logger:info(nameOfModule .. ": Set cycle time to " .. tostring(time))
+  _G.logger:fine(nameOfModule .. ": Set cycle time to " .. tostring(time))
   encoder_Model.parameters.timerCycle = time
   encoder_Model.setupTimer()
   handleOnExpiredTmrEncoder()
@@ -273,7 +282,7 @@ end
 Script.serveFunction('CSK_Encoder.setTimerCycle', setTimerCycle)
 
 local function setConveyorActive(status)
-  _G.logger:info(nameOfModule .. ": Set conveyor status to " .. tostring(status))
+  _G.logger:fine(nameOfModule .. ": Set conveyor status to " .. tostring(status))
   encoder_Model.parameters.conveyorActive = status
   encoder_Model.setupConveyor()
   handleOnExpiredTmrEncoder()
@@ -281,7 +290,7 @@ end
 Script.serveFunction('CSK_Encoder.setConveyorActive', setConveyorActive)
 
 local function setConveyorSource(source)
-  _G.logger:info(nameOfModule .. ": Set conveyor source to " .. source)
+  _G.logger:fine(nameOfModule .. ": Set conveyor source to " .. source)
   encoder_Model.parameters.conveyorSource = source
   encoder_Model.setupConveyor()
   handleOnExpiredTmrEncoder()
@@ -289,7 +298,7 @@ end
 Script.serveFunction('CSK_Encoder.setConveyorSource', setConveyorSource)
 
 local function setConveyorResolution(resolution)
-  _G.logger:info(nameOfModule .. ": Set conveyor resolution to " .. tostring(resolution))
+  _G.logger:fine(nameOfModule .. ": Set conveyor resolution to " .. tostring(resolution))
   encoder_Model.parameters.conveyorResolution = resolution
   encoder_Model.setupConveyor()
   handleOnExpiredTmrEncoder()
@@ -297,7 +306,7 @@ end
 Script.serveFunction('CSK_Encoder.setConveyorResolution', setConveyorResolution)
 
 local function setConveyorPrescaler(prescaler)
-  _G.logger:info(nameOfModule .. ": Set conveyor prescaler to " .. tostring(prescaler))
+  _G.logger:fine(nameOfModule .. ": Set conveyor prescaler to " .. tostring(prescaler))
   encoder_Model.parameters.conveyorPrescaler = prescaler
   encoder_Model.setupConveyor()
   handleOnExpiredTmrEncoder()
@@ -314,7 +323,7 @@ end
 Script.serveFunction('CSK_Encoder.getConveyorTimeoutHandle', getConveyorTimeoutHandle)
 
 local function setConveyorTimeoutActive(status)
-  _G.logger:info(nameOfModule .. ": Set conveyor timeout active status to " .. tostring(status))
+  _G.logger:fine(nameOfModule .. ": Set conveyor timeout active status to " .. tostring(status))
   encoder_Model.parameters.conveyorTimeoutActive = status
   encoder_Model.setupConveyorTimeout()
   handleOnExpiredTmrEncoder()
@@ -322,7 +331,7 @@ end
 Script.serveFunction('CSK_Encoder.setConveyorTimeoutActive', setConveyorTimeoutActive)
 
 local function setConveyorTimeoutMode(mode)
-  _G.logger:info(nameOfModule .. ": Set conveyor timeout mode to " .. mode)
+  _G.logger:fine(nameOfModule .. ": Set conveyor timeout mode to " .. mode)
   encoder_Model.parameters.conveyorTimeoutMode = mode
   encoder_Model.setupConveyorTimeout()
   handleOnExpiredTmrEncoder()
@@ -330,29 +339,48 @@ end
 Script.serveFunction('CSK_Encoder.setConveyorTimeoutMode', setConveyorTimeoutMode)
 
 local function setConveyorTimeoutValue(value)
-  _G.logger:info(nameOfModule .. ": Set conveyor timeout value to " .. tostring(value))
+  _G.logger:fine(nameOfModule .. ": Set conveyor timeout value to " .. tostring(value))
   encoder_Model.parameters.conveyorTimeoutValue = value
   encoder_Model.setupConveyorTimeout()
   handleOnExpiredTmrEncoder()
 end
 Script.serveFunction('CSK_Encoder.setConveyorTimeoutValue', setConveyorTimeoutValue)
 
+local function getStatusModuleActive()
+  return _G.availableAPIs.default and _G.availableAPIs.specific
+end
+Script.serveFunction('CSK_Encoder.getStatusModuleActive', getStatusModuleActive)
+
+local function clearFlowConfigRelevantConfiguration()
+  -- Insert code here to clear FlowConfig relevant actions
+  --TODO
+  --encoder_Model.deregisterFromEvent()
+end
+Script.serveFunction('CSK_Encoder.clearFlowConfigRelevantConfiguration', clearFlowConfigRelevantConfiguration)
+
+local function getParameters()
+  return encoder_Model.helperFuncs.json.encode(encoder_Model.parameters)
+end
+Script.serveFunction('CSK_Encoder.getParameters', getParameters)
+
 -- *****************************************************************
 -- Following function can be adapted for CSK_PersistentData module usage
 -- *****************************************************************
 
 local function setParameterName(name)
-  _G.logger:info(nameOfModule .. ": Set parameter name: " .. tostring(name))
+  _G.logger:fine(nameOfModule .. ": Set parameter name: " .. tostring(name))
   encoder_Model.parametersName = name
 end
 Script.serveFunction("CSK_Encoder.setParameterName", setParameterName)
 
-local function sendParameters()
+local function sendParameters(noDataSave)
   if encoder_Model.persistentModuleAvailable then
     CSK_PersistentData.addParameter(encoder_Model.helperFuncs.convertTable2Container(encoder_Model.parameters), encoder_Model.parametersName)
     CSK_PersistentData.setModuleParameterName(nameOfModule, encoder_Model.parametersName, encoder_Model.parameterLoadOnReboot)
-    _G.logger:info(nameOfModule .. ": Send Encoder parameters with name '" .. encoder_Model.parametersName .. "' to CSK_PersistentData module.")
-    CSK_PersistentData.saveData()
+    _G.logger:fine(nameOfModule .. ": Send Encoder parameters with name '" .. encoder_Model.parametersName .. "' to CSK_PersistentData module.")
+    if not noDataSave then
+      CSK_PersistentData.saveData()
+    end
   else
     _G.logger:warning(nameOfModule .. ": CSK_PersistentData module not available.")
   end
@@ -363,47 +391,64 @@ local function loadParameters()
   if encoder_Model.persistentModuleAvailable then
     local data = CSK_PersistentData.getParameter(encoder_Model.parametersName)
     if data then
+      clearFlowConfigRelevantConfiguration()
       _G.logger:info(nameOfModule .. ": Loaded parameters from CSK_PersistentData module.")
       encoder_Model.parameters = encoder_Model.helperFuncs.convertContainer2Table(data)
+
+      encoder_Model.parameters = encoder_Model.helperFuncs.checkParameters(encoder_Model.parameters)
+
       encoder_Model.setupEncoder()
       CSK_Encoder.pageCalled()
+      return true
     else
       _G.logger:warning(nameOfModule .. ": Loading parameters from CSK_PersistentData module did not work.")
+      return false
     end
   else
     _G.logger:warning(nameOfModule .. ": CSK_PersistentData module not available.")
+    return false
   end
 end
 Script.serveFunction("CSK_Encoder.loadParameters", loadParameters)
 
 local function setLoadOnReboot(status)
   encoder_Model.parameterLoadOnReboot = status
-  _G.logger:info(nameOfModule .. ": Set new status to load setting on reboot: " .. tostring(status))
+  _G.logger:fine(nameOfModule .. ": Set new status to load setting on reboot: " .. tostring(status))
+  Script.notifyEvent("Encoder_OnNewStatusLoadParameterOnReboot", status)
 end
 Script.serveFunction("CSK_Encoder.setLoadOnReboot", setLoadOnReboot)
+
+local function setFlowConfigPriority(status)
+  encoder_Model.parameters.flowConfigPriority = status
+  _G.logger:fine(nameOfModule .. ": Set new status of FlowConfig priority: " .. tostring(status))
+  Script.notifyEvent("Encoder_OnNewStatusFlowConfigPriority", encoder_Model.parameters.flowConfigPriority)
+end
+Script.serveFunction('CSK_Encoder.setFlowConfigPriority', setFlowConfigPriority)
 
 --- Function to react on initial load of persistent parameters
 local function handleOnInitialDataLoaded()
 
-  _G.logger:info(nameOfModule .. ': Try to initially load parameter from CSK_PersistentData module.')
-  if string.sub(CSK_PersistentData.getVersion(), 1, 1) == '1' then
+  if _G.availableAPIs.default and _G.availableAPIs.specific then
+    _G.logger:fine(nameOfModule .. ': Try to initially load parameter from CSK_PersistentData module.')
+    if string.sub(CSK_PersistentData.getVersion(), 1, 1) == '1' then
 
-    _G.logger:warning(nameOfModule .. ': CSK_PersistentData module is too old and will not work. Please update CSK_PersistentData module.')
+      _G.logger:warning(nameOfModule .. ': CSK_PersistentData module is too old and will not work. Please update CSK_PersistentData module.')
 
-    encoder_Model.persistentModuleAvailable = false
-  else
+      encoder_Model.persistentModuleAvailable = false
+    else
 
-    local parameterName, loadOnReboot = CSK_PersistentData.getModuleParameterName(nameOfModule)
+      local parameterName, loadOnReboot = CSK_PersistentData.getModuleParameterName(nameOfModule)
 
-    if parameterName then
-      encoder_Model.parametersName = parameterName
-      encoder_Model.parameterLoadOnReboot = loadOnReboot
+      if parameterName then
+        encoder_Model.parametersName = parameterName
+        encoder_Model.parameterLoadOnReboot = loadOnReboot
+      end
+
+      if encoder_Model.parameterLoadOnReboot then
+        loadParameters()
+      end
+      Script.notifyEvent('Encoder_OnDataLoadedOnReboot')
     end
-
-    if encoder_Model.parameterLoadOnReboot then
-      loadParameters()
-    end
-    Script.notifyEvent('Encoder_OnDataLoadedOnReboot')
   end
 end
 if CSK_DigitalIOManager then
@@ -411,6 +456,15 @@ if CSK_DigitalIOManager then
 else
   Script.register("CSK_PersistentData.OnInitialDataLoaded", handleOnInitialDataLoaded)
 end
+
+local function resetModule()
+  if _G.availableAPIs.default and _G.availableAPIs.specific then
+    clearFlowConfigRelevantConfiguration()
+    pageCalled()
+  end
+end
+Script.serveFunction('CSK_Encoder.resetModule', resetModule)
+Script.register("CSK_PersistentData.OnResetAllModules", resetModule)
 
 -- *************************************************
 -- END of functions for CSK_PersistentData module usage

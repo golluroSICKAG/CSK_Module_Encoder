@@ -31,9 +31,9 @@ setEncoder_ModelHandle(encoder_Model)
 --Loading helper functions if needed
 encoder_Model.helperFuncs = require('Sensors/Encoder/helper/funcs')
 
-encoder_Model.moduleActive = true -- Features provided by device (APIs available)
-
 -- Create parameters / instances for this module
+encoder_Model.styleForUI = 'None' -- Optional parameter to set UI style
+encoder_Model.version = Engine.getCurrentAppVersion() -- Version of module
 encoder_Model.availableInterfaces = {} -- List of available connectors to connect the encoder
 
 -- Check if specific API was loaded via
@@ -71,6 +71,14 @@ if _G.availableAPIs.specific then
 
   -- Parameters to be saved permanently if wanted
   encoder_Model.parameters = {}
+  encoder_Model.parameters = require('Sensors/Encoder/Encoder_Parameters')
+
+  encoder_Model.parameters.encoderInterface = encoder_Model.availableInterfaces[1] -- Source of connected encoder (e.g. S4, INC, SER1)
+  encoder_Model.parameters.encoderSource = encoder_Model.availableEncoderIncrementSources[1]  -- Devices identifier of the encoder (e.g. ENC1)
+  encoder_Model.parameters.decoderInstance = encoder_Model.availableDecoderInstances[1] or '' -- Instance of decoder to use
+  encoder_Model.parameters.conveyorSource = encoder_Model.availableIncrementSources[1] or '' -- Source of increment source to be used for updating the system increment
+
+  encoder_Model.parameters.flowConfigPriority = false -- Status if FlowConfig should have priority for FlowConfig relevant configurations
 
   encoder_Model.parameters.encoderActive = false -- Status if encoder features are active
 
@@ -96,9 +104,7 @@ if _G.availableAPIs.specific then
   encoder_Model.parameters.conveyorTimeoutMode = 'TICKS' -- 'TICKS' or 'DISTANCE'
 
 else
-  encoder_Model.moduleActive = false
-  _G.logger:warning(nameOfModule .. ': Necessary CROWNs are not available on this device. Module is not supported...')
-
+  _G.logger:warning(nameOfModule .. ": Relevant CROWN(s) not available on device. Module is not supported...") --TODO
 end
 
 --**************************************************************************
@@ -106,6 +112,13 @@ end
 --**************************************************************************
 --**********************Start Function Scope *******************************
 --**************************************************************************
+
+--- Function to react on UI style change
+local function handleOnStyleChanged(theme)
+  encoder_Model.styleForUI = theme
+  Script.notifyEvent("Encoder_OnNewStatusCSKStyle", encoder_Model.styleForUI)
+end
+Script.register('CSK_PersistentData.OnNewStatusCSKStyle', handleOnStyleChanged)
 
 --- Function to periodically pull increment / conveyor information
 local function handleOnTimerExpired()
@@ -149,7 +162,6 @@ end
 
 --- Function to notify when conveyor timeout expired and restart it
 local function handleOnConveyorTimerExpired()
-  print("Got trigger") --DEBUG
   restartConveyorTimeout()
   Script.notifyEvent('Encoder_OnConveyorTimeout', DateTime.getTimestamp())
 end
