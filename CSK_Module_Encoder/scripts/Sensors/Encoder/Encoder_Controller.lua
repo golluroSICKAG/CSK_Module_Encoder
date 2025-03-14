@@ -31,6 +31,7 @@ Script.serveEvent('CSK_Encoder.OnConveyorTimeout', 'Encoder_OnConveyorTimeout')
 Script.serveEvent('CSK_Encoder.OnNewStatusEncoderFeatureActive', 'Encoder_OnNewStatusEncoderFeatureActive')
 
 Script.serveEvent('CSK_Encoder.OnNewEncoderInterfaceList', 'Encoder_OnNewEncoderInterfaceList')
+
 Script.serveEvent('CSK_Encoder.OnNewStatusEncoderInterface', 'Encoder_OnNewStatusEncoderInterface')
 
 Script.serveEvent('CSK_Encoder.OnNewEncoderIncrementSourceList', 'Encoder_OnNewEncoderIncrementSourceList')
@@ -55,6 +56,11 @@ Script.serveEvent('CSK_Encoder.OnNewStatusConveyorPrescaler', 'Encoder_OnNewStat
 Script.serveEvent('CSK_Encoder.OnNewStatusConveyorTimeoutActive', 'Encoder_OnNewStatusConveyorTimeoutActive')
 Script.serveEvent('CSK_Encoder.OnNewStatusConveyorTimeoutMode', 'Encoder_OnNewStatusConveyorTimeoutMode')
 Script.serveEvent('CSK_Encoder.OnNewStatusConveyorTimeoutValue', 'Encoder_OnNewStatusConveyorTimeoutValue')
+
+Script.serveEvent('CSK_Encoder.OnNewStatusForwardAvailable', 'Encoder_OnNewStatusForwardAvailable')
+Script.serveEvent('CSK_Encoder.OnNewForwardInterfaceList', 'Encoder_OnNewForwardInterfaceList')
+Script.serveEvent('CSK_Encoder.OnNewStatusForwardEncoder', 'Encoder_OnNewStatusForwardEncoder')
+Script.serveEvent('CSK_Encoder.OnNewStatusForwardInterface', 'Encoder_OnNewStatusForwardInterface')
 
 Script.serveEvent('CSK_Encoder.OnNewStatusFlowConfigPriority', 'Encoder_OnNewStatusFlowConfigPriority')
 Script.serveEvent("CSK_Encoder.OnNewStatusLoadParameterOnReboot", "Encoder_OnNewStatusLoadParameterOnReboot")
@@ -168,6 +174,11 @@ local function handleOnExpiredTmrEncoder()
     Script.notifyEvent("Encoder_OnNewStatusConveyorTimeoutMode", encoder_Model.parameters.conveyorTimeoutMode)
     Script.notifyEvent("Encoder_OnNewStatusConveyorTimeoutValue", encoder_Model.parameters.conveyorTimeoutValue)
 
+    Script.notifyEvent("Encoder_OnNewStatusForwardAvailable", encoder_Model.forwardAvailable)
+    Script.notifyEvent("Encoder_OnNewForwardInterfaceList", encoder_Model.helperFuncs.createStringListBySimpleTable(encoder_Model.availableForwardInterfaces))
+    Script.notifyEvent("Encoder_OnNewStatusForwardEncoder", encoder_Model.parameters.forwardActive)
+    Script.notifyEvent("Encoder_OnNewStatusForwardInterface", encoder_Model.parameters.forwardInterface)
+
     Script.notifyEvent("Encoder_OnNewStatusFlowConfigPriority", encoder_Model.parameters.flowConfigPriority)
     Script.notifyEvent("Encoder_OnNewStatusLoadParameterOnReboot", encoder_Model.parameterLoadOnReboot)
     Script.notifyEvent("Encoder_OnPersistentDataModuleAvailable", encoder_Model.persistentModuleAvailable)
@@ -213,6 +224,13 @@ local function setEncoderInterface(interface)
   encoder_Model.freeDigitalInPort()
   encoder_Model.parameters.encoderInterface = interface
   encoder_Model.setupEncoder()
+
+  encoder_Model.forwardAvailable = false
+  for _, value in ipairs(encoder_Model.availableForwardInterfaces) do
+    if interface == value then
+      encoder_Model.forwardAvailable = true
+    end
+  end
   handleOnExpiredTmrEncoder()
 end
 Script.serveFunction('CSK_Encoder.setEncoderInterface', setEncoderInterface)
@@ -345,6 +363,19 @@ local function setConveyorTimeoutValue(value)
   handleOnExpiredTmrEncoder()
 end
 Script.serveFunction('CSK_Encoder.setConveyorTimeoutValue', setConveyorTimeoutValue)
+
+local function setForwardActive(status)
+  _G.logger:fine(nameOfModule .. ": Set status to forward encoder data to " .. tostring(status))
+  encoder_Model.parameters.forwardActive = status
+  Script.notifyEvent("Encoder_OnNewStatusForwardEncoder", status)
+end
+Script.serveFunction('CSK_Encoder.setForwardActive', setForwardActive)
+
+local function setForwardInterface(interface)
+  _G.logger:fine(nameOfModule .. ": Set interface to forward encoder data to " .. tostring(interface))
+  encoder_Model.parameters.forwardInterface = interface
+end
+Script.serveFunction('CSK_Encoder.setForwardInterface', setForwardInterface)
 
 local function getStatusModuleActive()
   return _G.availableAPIs.default and _G.availableAPIs.specific

@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 
 ### New features
 - Supports FlowConfig to forward encoder data to other modules
+- Forward encoder data on serial port
 - Check if persistent data to load provides all relevant parameters. Otherwise add default values
 - Provide version of module via 'OnNewStatusModuleVersion'
 - Function 'getParameters' to provide PersistentData parameters

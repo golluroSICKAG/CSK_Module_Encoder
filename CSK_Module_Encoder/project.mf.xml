@@ -193,6 +193,22 @@ You can make use of the mentioned features / events from other apps or you can d
                     <desc>Notify if FlowConfig should have priority for FlowConfig relevant configurations.</desc>
                     <param desc="Status" multiplicity="1" name="status" type="bool"/>
                 </event>
+                <event name="OnNewStatusForwardEncoder">
+                    <desc>Notify if encoder data should be forwarded.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusForwardInterface">
+                    <desc>Notify interface to forward encoder data.</desc>
+                    <param desc="Interface" multiplicity="1" name="interface" type="string"/>
+                </event>
+                <event name="OnNewForwardInterfaceList">
+                    <desc>Notify list of interfaces to forward encoder data.</desc>
+                    <param desc="List of interfaces." multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnNewStatusForwardAvailable">
+                    <desc>Notify status if forwarding encoder data of currently selected interface is possible.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
                 <function name="setParameterName">
                     <desc>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</desc>
                     <param desc="Name of the parameter." multiplicity="1" name="name" type="string"/>
@@ -307,6 +323,14 @@ You can make use of the mentioned features / events from other apps or you can d
                 <function name="setFlowConfigPriority">
                     <desc>Function to configure if FlowConfig should have priority for FlowConfig relevant configuration.</desc>
                     <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setForwardActive">
+                    <desc>Function to set status if received encoder data should be forwarded on another interface.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setForwardInterface">
+                    <desc>Function to set interface to forward received encoder data.</desc>
+                    <param desc="Interface" multiplicity="1" name="interface" type="string"/>
                 </function>
             </serves>
         </crown>

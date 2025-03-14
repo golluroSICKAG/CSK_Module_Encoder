@@ -14,6 +14,7 @@ local function getParameters()
   encoderParameters.flowConfigPriority = false -- Status if FlowConfig should have priority for FlowConfig relevant configurations
 
   encoderParameters.encoderActive = false -- Status if encoder features are active
+  encoderParameters.forwardActive = false -- Status if encoder data should be forwarded
 
   encoderParameters.decoderHighResolution = false -- Status if using high resolution or robust mode
   encoderParameters.decoderCountMode = 'POSITIVE_MOVEMENT' -- Select how increments will be counted, 'BIDIRECTIONAL', 'POSITIVE_MOVEMENT', 'NEGATIVE_MOVEMENT', 'FORWARD_MOVEMENT', 'BACKWARD_MOVEMENT'
@@ -32,6 +33,7 @@ local function getParameters()
   encoderParameters.conveyorTimeoutMode = 'TICKS' -- 'TICKS' or 'DISTANCE'
 
   encoderParameters.encoderInterface = '' -- Source of connected encoder (e.g. S4, INC, SER1)
+  encoderParameters.forwardInterface = '' -- Interace to forward received encoder data
   encoderParameters.encoderSource = '' -- Devices identifier of the encoder (e.g. ENC1)
   encoderParameters.decoderInstance = '' -- Instance of decoder to use
   encoderParameters.conveyorSource = '' -- Source of increment source to be used for updating the system increment

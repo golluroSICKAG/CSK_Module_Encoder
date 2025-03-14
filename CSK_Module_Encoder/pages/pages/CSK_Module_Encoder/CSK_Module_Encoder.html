@@ -243,6 +243,10 @@
                                                                 name="CSK_Encoder/setEncoderInterface"
                                                                 path="param/args/interface" auto-commit>
                                                             </crown-binding>
+                                                            <crown-edpws-binding property="disabled"
+                                                                name="CSK_Encoder/OnNewStatusEncoderFeatureActive"
+                                                                update-on-resume>
+                                                            </crown-edpws-binding>
                                                         </davinci-drop-down>
                                                     </layout-column>
                                                     <layout-column id="ColumnLayout32" style="align-items: stretch">
@@ -259,11 +263,101 @@
                                                                 name="CSK_Encoder/setEncoderSource"
                                                                 path="param/args/source" auto-commit>
                                                             </crown-binding>
+                                                            <crown-edpws-binding property="disabled"
+                                                                name="CSK_Encoder/OnNewStatusEncoderFeatureActive"
+                                                                update-on-resume>
+                                                            </crown-edpws-binding>
                                                         </davinci-drop-down>
                                                     </layout-column>
-                                                    <layout-column id="ColumnLayout20" style="align-items: stretch">
-                                                    </layout-column>
-                                                    <layout-column id="ColumnLayout4" style="align-items: stretch">
+                                                    <layout-column id="ColumnLayout36"
+                                                        style="align-items: stretch; flex-grow: 2">
+                                                        <stacked-view id="SV_ForwardAvailable">
+                                                            <stacked-pane id="SP_ForwardAvailable" value="true">
+                                                                <layout-row id="RowLayout37">
+                                                                    <layout-column id="ColumnLayout20"
+                                                                        style="align-items: stretch; justify-content: space-between">
+                                                                        <davinci-value-display id="VD_ForwardData"
+                                                                            value="Forward"
+                                                                            title="Status if received encoder data should be forwarded on another interface.">
+                                                                        </davinci-value-display>
+                                                                        <layout-row id="RowLayout35"
+                                                                            style="justify-content: center">
+                                                                            <davinci-toggle-switch id="TS_ForwardData"
+                                                                                title="Status if received encoder data should be forwarded on another interface."
+                                                                                style="align-self: center">
+                                                                                <crown-edpws-binding property="checked"
+                                                                                    name="CSK_Encoder/OnNewStatusForwardEncoder"
+                                                                                    update-on-resume>
+                                                                                </crown-edpws-binding>
+                                                                                <crown-binding event="change"
+                                                                                    name="CSK_Encoder/setForwardActive"
+                                                                                    path="param/args/status"
+                                                                                    auto-commit>
+                                                                                </crown-binding>
+                                                                                <crown-edpws-binding property="disabled"
+                                                                                    name="CSK_Encoder/OnNewStatusEncoderFeatureActive"
+                                                                                    update-on-resume>
+                                                                                </crown-edpws-binding>
+                                                                            </davinci-toggle-switch>
+                                                                        </layout-row>
+                                                                    </layout-column>
+                                                                    <layout-column id="ColumnLayout4"
+                                                                        style="align-items: stretch">
+                                                                        <stacked-view id="SV_ForwardEncoderData">
+                                                                            <stacked-pane id="SP_ForwardEncoder"
+                                                                                value="true">
+                                                                                <layout-row id="RowLayout36">
+                                                                                    <layout-column id="ColumnLayout35"
+                                                                                        style="align-items: stretch">
+                                                                                        <davinci-drop-down
+                                                                                            id="DD_ForwardInterface"
+                                                                                            label="Forward interface">
+                                                                                            <crown-edpws-binding
+                                                                                                property="data"
+                                                                                                name="CSK_Encoder/OnNewForwardInterfaceList"
+                                                                                                update-on-resume
+                                                                                                converter="convertToList">
+                                                                                            </crown-edpws-binding>
+                                                                                            <crown-edpws-binding
+                                                                                                property="value"
+                                                                                                name="CSK_Encoder/OnNewStatusForwardInterface"
+                                                                                                update-on-resume>
+                                                                                            </crown-edpws-binding>
+                                                                                            <crown-binding
+                                                                                                event="change"
+                                                                                                name="CSK_Encoder/setForwardInterface"
+                                                                                                path="param/args/interface"
+                                                                                                auto-commit>
+                                                                                            </crown-binding>
+                                                                                            <crown-edpws-binding
+                                                                                                property="disabled"
+                                                                                                name="CSK_Encoder/OnNewStatusEncoderFeatureActive"
+                                                                                                update-on-resume>
+                                                                                            </crown-edpws-binding>
+                                                                                        </davinci-drop-down>
+                                                                                    </layout-column>
+                                                                                </layout-row>
+                                                                            </stacked-pane>
+                                                                            <crown-edpws-binding property="value"
+                                                                                name="CSK_Encoder/OnNewStatusForwardEncoder"
+                                                                                update-on-resume
+                                                                                converter="function(value) {return value.toString();}">
+                                                                            </crown-edpws-binding>
+                                                                            <stacked-pane id="SP_NoForwardEncoderData"
+                                                                                value="false">
+                                                                            </stacked-pane>
+                                                                        </stacked-view>
+                                                                    </layout-column>
+                                                                </layout-row>
+                                                            </stacked-pane>
+                                                            <stacked-pane id="SP_ForwardNotAvailable" value="false">
+                                                            </stacked-pane>
+                                                            <crown-edpws-binding property="value"
+                                                                name="CSK_Encoder/OnNewStatusForwardAvailable"
+                                                                update-on-resume
+                                                                converter="function(value) {return value.toString();}">
+                                                            </crown-edpws-binding>
+                                                        </stacked-view>
                                                     </layout-column>
                                                 </layout-row>
                                                 <layout-row id="RowLayout23"
@@ -302,6 +396,10 @@
                                                                         name="CSK_Encoder/setDecoderInstance"
                                                                         path="param/args/instance" auto-commit>
                                                                     </crown-binding>
+                                                                    <crown-edpws-binding property="disabled"
+                                                                        name="CSK_Encoder/OnNewStatusEncoderFeatureActive"
+                                                                        update-on-resume>
+                                                                    </crown-edpws-binding>
                                                                 </davinci-drop-down>
                                                             </layout-column>
                                                             <layout-column id="ColumnLayout13"
@@ -322,6 +420,10 @@
                                                                             name="CSK_Encoder/setDecoderHighResoltuion"
                                                                             path="param/args/status" auto-commit>
                                                                         </crown-binding>
+                                                                        <crown-edpws-binding property="disabled"
+                                                                            name="CSK_Encoder/OnNewStatusEncoderFeatureActive"
+                                                                            update-on-resume>
+                                                                        </crown-edpws-binding>
                                                                     </davinci-toggle-switch>
                                                                 </layout-row>
                                                             </layout-column>
@@ -359,6 +461,10 @@
                                                                         name="CSK_Encoder/setDecoderCountMode"
                                                                         path="param/args/mode" auto-commit>
                                                                     </crown-binding>
+                                                                    <crown-edpws-binding property="disabled"
+                                                                        name="CSK_Encoder/OnNewStatusEncoderFeatureActive"
+                                                                        update-on-resume>
+                                                                    </crown-edpws-binding>
                                                                 </davinci-drop-down>
                                                             </layout-column>
                                                             <layout-column id="ColumnLayout112"
@@ -377,6 +483,10 @@
                                                                         name="CSK_Encoder/setDecoderPrescaler"
                                                                         path="param/args/prescaler" auto-commit>
                                                                     </crown-binding>
+                                                                    <crown-edpws-binding property="disabled"
+                                                                        name="CSK_Encoder/OnNewStatusEncoderFeatureActive"
+                                                                        update-on-resume>
+                                                                    </crown-edpws-binding>
                                                                 </davinci-numeric-field>
                                                             </layout-column>
                                                             <layout-column id="ColumnLayout10"
@@ -401,6 +511,10 @@
                                                                         name="CSK_Encoder/setDecoderNumberOfPhases"
                                                                         path="param/args/phases" auto-commit>
                                                                     </crown-binding>
+                                                                    <crown-edpws-binding property="disabled"
+                                                                        name="CSK_Encoder/OnNewStatusEncoderFeatureActive"
+                                                                        update-on-resume>
+                                                                    </crown-edpws-binding>
                                                                 </davinci-drop-down>
                                                             </layout-column>
                                                         </layout-row>
